@@ -1,4 +1,4 @@
-package day1.printstart;
+package day1.printstar;
 
 import java.util.*;
 
