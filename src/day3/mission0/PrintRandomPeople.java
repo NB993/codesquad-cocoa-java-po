@@ -1,12 +1,14 @@
 package day3.mission0;
 
+import java.util.*;
+
 public class PrintRandomPeople {
 
   public static void main(String[] args) {
     int headCount = Prompt.inputHeadCount();
-    String[] membersList = MemberList.of(headCount);
+    List<String> memberList = MemberList.of(headCount);
 
-    Prompt.print(membersList);
+    Prompt.print(memberList);
   }
 
 }

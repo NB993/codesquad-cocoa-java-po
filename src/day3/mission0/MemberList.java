@@ -1,45 +1,41 @@
 package day3.mission0;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class MemberList {
 
-  private static final String[] members = new String[]{"피오", "donggi", "땃쥐", "Tany", "후", "K",
+  private static final String[] memberArr = new String[]{"피오", "donggi", "땃쥐", "Tany", "후", "K",
       "노리", "taksu", "Jerry", "MK", "mandoo"};
 
-  public static String[] of(int headCount) {
-    int[] randomNumbers = getRandomNumbers(headCount);
-    String[] selectedMembers = selectMembers(randomNumbers);
 
-    return selectedMembers;
+  public static List<String> of(int headCount) {
+    ArrayList<String> memberList = addMember(memberArr);
+    shuffleMember(memberList);
+
+    return cutMemberList(memberList, headCount);
   }
 
-  private static int getRandomNumber() {
-    return new Random().nextInt(members.length);
-  }
+  private static ArrayList<String> addMember(String[] memberArr) {
+    ArrayList<String> memberList = new ArrayList<>();
 
-  private static int[] getRandomNumbers(int headCount) {
-    int[] randomNumbers = new int[headCount];
-
-    for (int i = 0; i < headCount; i++) {
-      randomNumbers[i] = getRandomNumber();
+    for (int i = 0; i < memberArr.length; i++) {
+      memberList.add(memberArr[i]);
     }
 
-//    removeDuplicatedNum(randomNumbers, headCount);
+    return memberList;
 
-    return randomNumbers;
   }
-  private static String[] selectMembers(int[] randomIndices) {
-    String[] randomMembers = new String[randomIndices.length];
 
-    for (int i=0; i < randomIndices.length; i++) {
-      randomMembers[i] = members[randomIndices[i]];
+  private static void shuffleMember(ArrayList<String> memberList) {
+    Collections.shuffle(memberList);
+  }
+
+  private static List<String> cutMemberList(ArrayList<String> memberList, int headCount) {
+    if (memberArr.length < headCount) {
+      headCount = memberArr.length;
     }
 
-    return randomMembers;
+    return memberList.subList(0, headCount);
   }
 
-//  private static int[] removeDuplicatedNum(int[] randomNumbers, int headCount) {
-//  }
 }
