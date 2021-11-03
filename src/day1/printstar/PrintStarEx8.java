@@ -36,6 +36,8 @@ public class PrintStarEx8 {
             sb.append("\n");
         }
 
+        
+
         System.out.print(sb);
     }
 }
