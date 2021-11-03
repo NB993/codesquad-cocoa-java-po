@@ -53,9 +53,9 @@ public class Prompt {
     }
   }
 
-  public static void print(List<String> memberList) {
-    for (int i = 0; i < memberList.size(); i++) {
-      System.out.println(memberList.get(i));
+  public static void print(List<String> members) {
+    for (int i = 0; i < members.size(); i++) {
+      System.out.println(members.get(i));
     }
   }
 
