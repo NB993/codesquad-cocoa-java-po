@@ -9,33 +9,33 @@ public class MemberList {
 
 
   public static List<String> of(int headCount) {
-    List<String> memberList = addMember(MEMBERS);
-    shuffleMember(memberList);
+    List<String> members = addMember(MEMBERS);
+    shuffleMember(members);
 
-    return cutMemberList(memberList, headCount);
+    return cutMemberList(members, headCount);
   }
 
   private static List<String> addMember(String[] MEMBERS) {
-    List<String> memberList = new ArrayList<>();
+//    List<String> members = new ArrayList<>();
+//
+//    for (int i = 0; i < MEMBERS.length; i++) {
+//      members.add(MEMBERS[i]);
+//    }
 
-    for (int i = 0; i < MEMBERS.length; i++) {
-      memberList.add(MEMBERS[i]);
-    }
-
-    return memberList;
+    return Arrays.asList(MEMBERS);
 
   }
 
-  private static void shuffleMember(List<String> memberList) {
-    Collections.shuffle(memberList);
+  private static void shuffleMember(List<String> members) {
+    Collections.shuffle(members);
   }
 
-  private static List<String> cutMemberList(List<String> memberList, int headCount) {
+  private static List<String> cutMemberList(List<String> members, int headCount) {
     if (MEMBERS.length < headCount) {
       headCount = MEMBERS.length;
     }
 
-    return memberList.subList(0, headCount);
+    return members.subList(0, headCount);
   }
 
 }

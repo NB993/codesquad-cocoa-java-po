@@ -6,9 +6,9 @@ public class PrintRandomPeople {
 
   public static void main(String[] args) {
     int headCount = Prompt.inputHeadCount();
-    List<String> memberList = MemberList.of(headCount);
+    List<String> members = MemberList.of(headCount);
 
-    Prompt.print(memberList);
+    Prompt.print(members);
   }
 
 }
