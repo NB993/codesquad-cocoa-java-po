@@ -8,7 +8,7 @@ public class MemberList {
       "노리", "taksu", "Jerry", "MK", "mandoo"};
 
 
-  public static List<String> of(int headCount) {
+  public static ArrayList<String> of(int headCount) {
     ArrayList<String> memberList = addMember(memberArr);
     shuffleMember(memberList);
 
@@ -30,12 +30,12 @@ public class MemberList {
     Collections.shuffle(memberList);
   }
 
-  private static List<String> cutMemberList(ArrayList<String> memberList, int headCount) {
+  private static ArrayList<String> cutMemberList(ArrayList<String> memberList, int headCount) {
     if (memberArr.length < headCount) {
       headCount = memberArr.length;
     }
 
-    return memberList.subList(0, headCount);
+    return new ArrayList<String>(memberList.subList(0, headCount));
   }
 
 }

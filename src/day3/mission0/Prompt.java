@@ -55,7 +55,7 @@ public class Prompt {
     }
   }
 
-  public static void print(List<String> memberList) {
+  public static void print(ArrayList<String> memberList) {
     for (int i = 0; i < memberList.size(); i++) {
       System.out.println(memberList.get(i));
     }
