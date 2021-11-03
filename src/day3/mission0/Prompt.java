@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Prompt {
 
-  private static final String[] members = new String[]{"피오", "donggi", "땃쥐", "Tany", "후", "K",
+  private static final String[] MEMBERS = new String[]{"피오", "donggi", "땃쥐", "Tany", "후", "K",
       "노리", "taksu", "Jerry", "MK", "mandoo"};
-
+  private static final int INPUT_MIN = 1;
   private static final Scanner sc = new Scanner(System.in);
 
   public static int inputHeadCount() {
@@ -14,19 +14,17 @@ public class Prompt {
 
     try {
       headCount = sc.nextInt();
+      inputValidation(headCount);
     } catch (NumberFormatException e) {
+      inputHeadCount();
+    } catch (Exception e) {
       inputHeadCount();
     }
 
-    try {
-      inputValidation(headCount);
-    } catch (final Exception e) {
-      return inputHeadCount();
-    }
+    sc.close();
 
     return headCount;
   }
-
 
 
   private static void inputValidation(int input) {
@@ -44,18 +42,18 @@ public class Prompt {
 //  }
 
   private static void validateHeadCount(int headCount) {
-    if (headCount <= 0) {
-      System.out.println("1 이상의 값을 입력해 주세요.");
+    if (headCount < INPUT_MIN) {
+      System.out.println(INPUT_MIN + " 이상의 값을 입력해 주세요.");
 
       throw new IllegalArgumentException();
     }
 
-    if (headCount > members.length) {
-      System.out.println("현재 총 인원 수는" + members.length + "명입니다.");
+    if (headCount > MEMBERS.length) {
+      System.out.println("현재 총 인원 수는" + MEMBERS.length + "명입니다.");
     }
   }
 
-  public static void print(ArrayList<String> memberList) {
+  public static void print(List<String> memberList) {
     for (int i = 0; i < memberList.size(); i++) {
       System.out.println(memberList.get(i));
     }
