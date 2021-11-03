@@ -55,10 +55,10 @@ public class Prompt {
     }
   }
 
-
-  public static void print(String[] membersList) {
-    for (int i = 0; i < membersList.length; i++) {
-      System.out.println(membersList[i]);
+  public static void print(List<String> memberList) {
+    for (int i = 0; i < memberList.size(); i++) {
+      System.out.println(memberList.get(i));
     }
   }
+
 }
