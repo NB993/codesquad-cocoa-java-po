@@ -64,8 +64,8 @@ public class Prompt {
     int inputValue = sc.nextInt();
 
     if (inputValue < min || inputValue > max) {
-        System.out.println(currentInput + "은(는) "
-            + min + "이상 " + max + "이하의 값을 입력해주세요");
+      System.out.println(currentInput + "은(는) "
+          + min + "이상 " + max + "이하의 값을 입력해주세요");
 
       throw new IllegalArgumentException();
     }
@@ -75,8 +75,8 @@ public class Prompt {
 
   private List<String> createName(List<String> birthDates) {
     Map<String, String> firstNames = new HashMap<>();
-    Map<String, String> middleNames  = new HashMap<>();
-    Map<String, String> lastNames  = new HashMap<>();
+    Map<String, String> middleNames = new HashMap<>();
+    Map<String, String> lastNames = new HashMap<>();
 
     try {
       firstNames = readIndianNamingFile(FILE_NAME_YEAR);
@@ -100,9 +100,7 @@ public class Prompt {
     String birthMonth = birthDates.get(1);
     String birthDay = birthDates.get(2);
 
-    names.add((String) firstNames.get(
-        birthYear.substring(birthYear.length() - 1))
-    );
+    names.add((String) firstNames.get(birthYear.substring(birthYear.length() - 1)));
     names.add((String) middleNames.get(birthMonth));
     names.add((String) lastNames.get(birthDay));
 
@@ -116,23 +114,23 @@ public class Prompt {
         Charset.forName("UTF-8"));
     BufferedReader br = new BufferedReader(fr);
 
-    Map namingData = new HashMap<String, String>();
+    Map names = new HashMap<String, String>();
     String singleLine = "";
 
     while ((singleLine = br.readLine()) != null) {
       String[] splitLine = singleLine.split(":");
 
       try {
-        namingData.put(splitLine[0], splitLine[1]);
+        names.put(splitLine[0], splitLine[1]);
       } catch (ArrayIndexOutOfBoundsException e) {
-        namingData.put(splitLine[0], ""); //4, 5, 6일
+        names.put(splitLine[0], ""); //4, 5, 6일
       }
 
     }
 
     br.close();
 
-    return namingData;
+    return names;
   }
 
   public void print(Indian indian) {
