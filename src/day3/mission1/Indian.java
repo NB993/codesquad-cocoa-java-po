@@ -3,6 +3,7 @@ package day3.mission1;
 import java.util.*;
 
 public class Indian {
+
   String firstName;
   String middleName;
   String lastName;
