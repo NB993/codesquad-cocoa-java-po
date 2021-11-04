@@ -23,123 +23,70 @@ public class Prompt {
   public static Scanner sc = new Scanner(System.in);
 
   public List<String> input() {
-    List<String> birthDates = new ArrayList<>();
-
-    try {
-      System.out.println("생년월일을 입력해주세요");
-      birthDates = validateInput();
-    } catch (IllegalArgumentException e) {
-      input();
-    } catch (Exception e) {
-      System.out.println("잘못 입력되었습니다. 다시 입력해주세요.");
-      input();
-    }
+    System.out.println("생년월일을 입력하시면 인디언식 이름을 지어드립니다.");
+    List<String> birthDates = inputDate();
 
     sc.close();
 
-    List<String> names = new ArrayList<>();
+    //첫 inputDate호출 시 잘못된 date가 입력되어 inputDate가 재 호출될 시
+    //여기서 birthDates의 size가 0이 된 채로 넘어감.
+    System.out.println(birthDates.size());
 
-    try {
-      names = createName(birthDates);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    List<String> names = createName(birthDates);
 
     return names;
   }
 
-  private List<String> validateInput() {
+  private List<String> inputDate() {
     List<String> birthDates = new ArrayList<>();
 
-    validateYear(birthDates);
-    validateMonth(birthDates);
-    validateDay(birthDates);
+    try {
+      validateDate(YEAR, INPUT_MIN_YEAR, INPUT_MAX_YEAR, birthDates);
+      validateDate(MONTH, INPUT_MIN_MONTH, INPUT_MAX_MONTH, birthDates);
+      validateDate(DAY, INPUT_MIN_DAY, INPUT_MAX_DAY, birthDates);
+    } catch (IllegalArgumentException e) {
+      inputDate();
+    } catch (Exception e) {
+      System.out.println("잘못 입력되었습니다. 다시 입력해주세요.");
+      inputDate();
+    }
 
     return birthDates;
   }
 
-  //이렇게 비슷한 메서드를 상수명이 다르다는 이유로 반복하는 건 너무 별로인 것 같다..
-  private List<String> validateYear(List<String> birthDates) {
-    printGuideForInput(YEAR);
-    int year = sc.nextInt();
+  private void validateDate(String currentInput, int min, int max,
+      List<String> birthDates) {
 
-    if (year < INPUT_MIN_YEAR || year > INPUT_MAX_YEAR) {
-      printGuideForError(YEAR);
-
-      throw new IllegalArgumentException();
-    }
-
-    birthDates.add(Integer.toString(year));
-
-    return birthDates;
-  }
-
-
-  private List<String> validateMonth(List<String> birthDates) {
-    printGuideForInput(MONTH);
-    int month = sc.nextInt();
-
-    if (month < INPUT_MIN_MONTH || month > INPUT_MAX_MONTH) {
-      printGuideForError(MONTH);
-
-      throw new IllegalArgumentException();
-    }
-
-    birthDates.add(Integer.toString(month));
-
-    return birthDates;
-  }
-
-  private List<String> validateDay(List<String> birthDates) {
-    printGuideForInput(DAY);
-    int day = sc.nextInt();
-
-    if (day < INPUT_MIN_DAY || day > INPUT_MAX_DAY) {
-      printGuideForError(DAY);
-
-      throw new IllegalArgumentException();
-    }
-
-    birthDates.add(Integer.toString(day));
-
-    return birthDates;
-  }
-
-  private void printGuideForError(String currentInput) {
-    System.out.print("올바르지 않은 값을 입력하셨습니다. ");
-
-    //어떻게 하나로 합칠 수 있을까..
-    if (currentInput == YEAR) {
-      System.out.println(YEAR + "은(는) "
-          + INPUT_MIN_YEAR + "이상 " + INPUT_MAX_YEAR + "이하의 값을 입력해주세요");
-    }
-
-    if (currentInput == MONTH) {
-      System.out.println(MONTH + "은(는) "
-          + INPUT_MIN_MONTH + "이상 " + INPUT_MAX_MONTH + "이하의 값을 입력해주세요");
-    }
-
-    if (currentInput == DAY) {
-      System.out.println(DAY + "은(는) "
-          + INPUT_MIN_DAY + "이상 " + INPUT_MAX_DAY + "이하의 값을 입력해주세요");
-    }
-  }
-
-
-  private void printGuideForInput(String currentInput) {
     System.out.print(currentInput + " : ");
+
+    //숫자가 아니라 글자가 입력돼서 다시 inputDate가 호출될 때 스캐너가 다시 입력을 안받음..
+    //그래서 IllegalArgumentException 에러를 반복해서 던짐
+    int inputValue = sc.nextInt();
+
+    if (inputValue < min || inputValue > max) {
+        System.out.println(currentInput + "은(는) "
+            + min + "이상 " + max + "이하의 값을 입력해주세요");
+
+      throw new IllegalArgumentException();
+    }
+
+    birthDates.add(Integer.toString(inputValue));
   }
 
-  private List<String> createName(List<String> birthDates) throws IOException {
-    List<String> names = new ArrayList<>();
+  private List<String> createName(List<String> birthDates) {
+    Map<String, String> firstNames = new HashMap<>();
+    Map<String, String> middleNames  = new HashMap<>();
+    Map<String, String> lastNames  = new HashMap<>();
 
-    //파일읽어오는 메서드 분리
-    Map firstNames = readIndianNamingFile(FILE_NAME_YEAR);
-    Map middleNames = readIndianNamingFile(FILE_NAME_MONTH);
-    Map lastNames = readIndianNamingFile(FILE_NAME_DAY);
+    try {
+      firstNames = readIndianNamingFile(FILE_NAME_YEAR);
+      middleNames = readIndianNamingFile(FILE_NAME_MONTH);
+      lastNames = readIndianNamingFile(FILE_NAME_DAY);
+    } catch (IOException e) {
+      System.out.println("네이밍 규칙을 불러오는 데 실패하였습니다.");
+    }
 
-    //비교하는 메서드 분리
-    names = matchDateWithName(birthDates, firstNames, middleNames, lastNames);
+    List<String> names = matchDateWithName(birthDates, firstNames, middleNames, lastNames);
 
     return names;
   }
@@ -153,7 +100,6 @@ public class Prompt {
     String birthMonth = birthDates.get(1);
     String birthDay = birthDates.get(2);
 
-    //저장할 때부터 마지막 한글자만 저장하고 싶으나 validation 메서드들을 하나로 합치고 싶어서 일단 이렇게..
     names.add((String) firstNames.get(
         birthYear.substring(birthYear.length() - 1))
     );
@@ -170,23 +116,23 @@ public class Prompt {
         Charset.forName("UTF-8"));
     BufferedReader br = new BufferedReader(fr);
 
-    Map names = new HashMap<String, String>();
+    Map namingData = new HashMap<String, String>();
     String singleLine = "";
 
     while ((singleLine = br.readLine()) != null) {
       String[] splitLine = singleLine.split(":");
 
       try {
-        names.put(splitLine[0], splitLine[1]);
+        namingData.put(splitLine[0], splitLine[1]);
       } catch (ArrayIndexOutOfBoundsException e) {
-        names.put(splitLine[0], ""); //4, 5, 6일
+        namingData.put(splitLine[0], ""); //4, 5, 6일
       }
 
     }
 
     br.close();
 
-    return names;
+    return namingData;
   }
 
   public void print(Indian indian) {
