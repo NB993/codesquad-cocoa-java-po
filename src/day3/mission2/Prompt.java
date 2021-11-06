@@ -8,7 +8,9 @@ public class Prompt {
 
   public static boolean input() {
     String direction = sc.nextLine().toUpperCase();
+    squareBoard.moveCharacter(direction);
+    squareBoard.printCurrGameStatus();
 
-    return squareBoard.moveCharacter(direction);
+    return squareBoard.isGameInProgress();
   }
 }

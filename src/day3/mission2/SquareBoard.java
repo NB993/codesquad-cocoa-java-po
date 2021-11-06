@@ -10,6 +10,7 @@ public class SquareBoard {
   private int characterX = 2;
   private int characterY = 2;
   private int score = 0;
+  private boolean isProgressing = true;
 
   public SquareBoard() {
     board[characterY][characterX] = CHARACTER;
@@ -35,7 +36,7 @@ public class SquareBoard {
     return board[y][x];
   }
 
-  public boolean moveCharacter(String direction) {
+  public void moveCharacter(String direction) {
     int nextX = 0;
     int nextY = 0;
 
@@ -68,35 +69,29 @@ public class SquareBoard {
       nextY = 4;
     }
 
-    int occupyingObject = getOccupyingObject(nextX, nextY);
-
-    //몬스터 찾았을 떄
-    if (occupyingObject == MONSTER) {
-      System.out.println("점수 : " + ++score); //점수 올려서 출력하고
-      relocateGameObjects(); //캐릭터 빼고 board 다시 세팅
-      printCurrGameStatus(); //게임 진행상황 출력
-
-      return true;
-    }
-
-    //지뢰 밟았을 때
-    if (occupyingObject == MINE) {
-      System.out.println("지뢰를 밟았습니다. 게임 종료.");
-
-      return false;
-    }
-
-    //이동한 곳이 빈칸이었을 때
     board[characterY][characterX] = BLANK;
     board[nextY][nextX] = CHARACTER;
     characterX = nextX;
     characterY = nextY;
-    printCurrGameStatus(); //게임 진행상황 출력
 
-    return true;
+
+    int occupyingObject = getOccupyingObject(nextX, nextY);
+    if (occupyingObject == MONSTER) {
+      //Monster클래스 만들어서 점수가 다른 몬스터를 생성해보자
+      System.out.println("점수 : " + ++score);
+      relocateGameObjects();
+      return;
+    }
+    if (occupyingObject == MINE) {
+      System.out.println("지뢰를 밟았습니다. 게임 종료. 획득한 스코어:" + score);
+      isProgressing = false;
+      return;
+    }
+
+    return;
   }
 
-  private void printCurrGameStatus() {
+  public void printCurrGameStatus() {
     StringBuilder sb = new StringBuilder();
 
     for (int i = 0; i < board.length; i++) {
@@ -104,8 +99,11 @@ public class SquareBoard {
         if (board[i][j] == MINE) {
           sb.append("[ ]");
         }
-        if (board[i][j] == CHARACTER) {
+        if (board[i][j] == CHARACTER && isProgressing) {
           sb.append("[C]");
+        }
+        if (board[i][j] == CHARACTER && !isProgressing) {
+          sb.append("[X]");
         }
         if (board[i][j] == MONSTER) {
           sb.append("[M]");
@@ -132,4 +130,7 @@ public class SquareBoard {
     putSomeWhereOnBoard(MINE);
   }
 
+  public boolean isGameInProgress() {
+    return isProgressing;
+  }
 }
