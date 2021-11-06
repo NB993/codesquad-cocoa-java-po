@@ -28,10 +28,6 @@ public class Prompt {
 
     sc.close();
 
-    //첫 inputDate호출 시 잘못된 date가 입력되어 inputDate가 재 호출될 시
-    //여기서 birthDates의 size가 0이 된 채로 넘어감.
-    System.out.println(birthDates.size());
-
     List<String> names = createName(birthDates);
 
     return names;
@@ -40,37 +36,51 @@ public class Prompt {
   private List<String> inputDate() {
     List<String> birthDates = new ArrayList<>();
 
+    int year = 0;
+    int month = 0;
+    int day = 0;
+
     try {
-      validateDate(YEAR, INPUT_MIN_YEAR, INPUT_MAX_YEAR, birthDates);
-      validateDate(MONTH, INPUT_MIN_MONTH, INPUT_MAX_MONTH, birthDates);
-      validateDate(DAY, INPUT_MIN_DAY, INPUT_MAX_DAY, birthDates);
+      System.out.print(YEAR + " : ");
+      year = Integer.parseInt(sc.nextLine());
+
+      validateDate(YEAR, INPUT_MIN_YEAR, INPUT_MAX_YEAR, year);
+
+      System.out.print(MONTH + " : ");
+      month = Integer.parseInt(sc.nextLine());
+
+      validateDate(MONTH, INPUT_MIN_MONTH, INPUT_MAX_MONTH, month);
+
+      System.out.print(DAY + " : ");
+      day = Integer.parseInt(sc.nextLine());
+
+      validateDate(DAY, INPUT_MIN_DAY, INPUT_MAX_DAY, day);
+
     } catch (IllegalArgumentException e) {
-      inputDate();
-    } catch (Exception e) {
       System.out.println("잘못 입력되었습니다. 다시 입력해주세요.");
-      inputDate();
+      return inputDate();
+    } catch (Exception e) {
+      return inputDate();
     }
+
+    //
+    birthDates.add(Integer.toString(year));
+    birthDates.add(Integer.toString(month));
+    birthDates.add(Integer.toString(day));
 
     return birthDates;
   }
 
-  private void validateDate(String currentInput, int min, int max,
-      List<String> birthDates) {
-
-    System.out.print(currentInput + " : ");
-
-    //숫자가 아니라 글자가 입력돼서 다시 inputDate가 호출될 때 스캐너가 다시 입력을 안받음..
-    //그래서 IllegalArgumentException 에러를 반복해서 던짐
-    int inputValue = sc.nextInt();
-
+  private void validateDate(String currentInput, int min, int max, int inputValue)
+      throws Exception {
     if (inputValue < min || inputValue > max) {
+      System.out.println(inputValue);
       System.out.println(currentInput + "은(는) "
           + min + "이상 " + max + "이하의 값을 입력해주세요");
 
-      throw new IllegalArgumentException();
+      throw new Exception();
     }
 
-    birthDates.add(Integer.toString(inputValue));
   }
 
   private List<String> createName(List<String> birthDates) {
