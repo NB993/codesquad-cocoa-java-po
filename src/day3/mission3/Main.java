@@ -13,9 +13,9 @@ public class Main {
       if (numberBoard.IsMovable(direction)) {
         numberBoard.movePieceOfPuzzle();
         numberBoard.printGameStatus();
-
-        continueGame = numberBoard.isGameStillGoingOn();
       }
+
+      continueGame = numberBoard.isGameStillGoingOn();
     }
 
   }
