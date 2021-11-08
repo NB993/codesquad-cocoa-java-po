@@ -70,7 +70,9 @@ public class NumberBoard {
       System.out.println("아래에는 움직일 수 있는 블록이 없습니다. 다른 방향의 번호를 이동시켜주세요");
       return false;
     }
-    
+
+
+
     return true;
   }
 
