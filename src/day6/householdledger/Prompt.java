@@ -41,9 +41,9 @@ public class Prompt {
   public LedgerItem inputNewItem(int numbering) {
     String brief = inputBrief();
     int income = inputIncome();
-    int outcome = inputOutcome();
+    int expenses = inputExpenses();
 
-    return new LedgerItem(numbering, brief, income, outcome);
+    return new LedgerItem(numbering, brief, income, expenses);
   }
 
   public int inputTaskSelection() {
@@ -93,7 +93,7 @@ public class Prompt {
     return inputAmountOfMoney();
   }
 
-  private int inputOutcome() {
+  private int inputExpenses() {
     System.out.print("지출 금액을 입력해주세요 : ");
     return inputAmountOfMoney();
   }
@@ -150,7 +150,7 @@ public class Prompt {
     while (iterator.hasNext()) {
       item = (LedgerItem) iterator.next();
       System.out.printf("|%-2d| [적요] %-10s   [수입] %10d  [지출] %10d \n", item.getOrder(), item.getBrief(),
-        item.getIncome(), item.getOutcome());
+        item.getIncome(), item.getExpenses());
 
     }
   }

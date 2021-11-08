@@ -4,7 +4,7 @@ public class LedgerItem implements Comparable<LedgerItem> {
   private final int order;
   private String brief;
   private int income;
-  private int outcome;
+  private int expenses;
 
   public int getOrder() {
     return order;
@@ -18,8 +18,8 @@ public class LedgerItem implements Comparable<LedgerItem> {
     return income;
   }
 
-  public int getOutcome() {
-    return outcome;
+  public int getExpenses() {
+    return expenses;
   }
 
 
@@ -27,7 +27,7 @@ public class LedgerItem implements Comparable<LedgerItem> {
     this.order = order;
     this.brief = brief;
     this.income = income;
-    this.outcome = outcome;
+    this.expenses = expenses;
   }
 
   @Override
