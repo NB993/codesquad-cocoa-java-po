@@ -7,11 +7,10 @@ public class LedgerItem {
   private double outcome;
   private double balance;
 
-  public LedgerItem(int order, String brief, double income, double outcome, double balance) {
+  public LedgerItem(int order, String brief, double income, double outcome) {
     this.order = order;
     this.brief = brief;
     this.income = income;
     this.outcome = outcome;
-    this.balance = balance;
   }
 }

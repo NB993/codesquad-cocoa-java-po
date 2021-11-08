@@ -3,6 +3,10 @@ package day6.householdledger;
 public class Main {
 
   public static void run() {
+    final int ADD = 1;
+    final int EDIT = 2;
+    final int DELETE = 3;
+
     Prompt prompt = new Prompt();
     HouseHoldLedger houseHoldLedger = new HouseHoldLedger();
     String registerSign = null;
@@ -16,13 +20,28 @@ public class Main {
     //입력후 1 > 등록된 유저가 있으면 바로 로그인 -------------------------------------
     if (houseHoldLedger.checkHasUser(userName)) {
       System.out.print("비밀번호를 입력해주세요:");
-      houseHoldLedger.signIn(userName);
+      String password = prompt.inputPassword();
+      houseHoldLedger.signIn(userName, password);
       currentUser = userName;
 
       //가계부 입력부분
       boolean isTaskGoinOn = true;
       while (isTaskGoinOn) {
         int taskNum = prompt.inputTaskSelection();
+        prompt.printCurrentLedger();
+
+        if (taskNum == ADD) {
+
+          prompt.inputAdd();
+        }
+        if (taskNum == EDIT) {
+          int order = prompt.inputItemOrder();
+          LedgerItem item = prompt.inputNewItem();
+          houseHoldLedger.edit(order, item);
+        }
+        if (taskNum == DELETE) {
+          prompt.inputDelete();
+        }
         houseHoldLedger.doTask(taskNum);
 
         isTaskGoinOn = prompt.inputIsTaskGoingOn();
@@ -46,7 +65,9 @@ public class Main {
         userName = prompt.inputUserName();
 
         if (!houseHoldLedger.checkHasUser(userName)) {
-          registerSuccess = houseHoldLedger.registerUser(userName);
+          System.out.print("신규비밀번호를 입력해주세요 : ");
+          String newPassword = prompt.inputPassword();
+          registerSuccess = houseHoldLedger.registerUser(userName, newPassword);
           System.out.println("등록이 완료되었습니다. 로그인 단계로 돌아갑니다.");
           run();
         }

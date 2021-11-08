@@ -6,11 +6,23 @@ import java.util.List;
 public class User {
   String name;
   String password;
-  List<LedgerItem> ledgerList;
+  List<LedgerItem> ledgerItems;
 
   public User(String name, String password) {
     this.name = name;
     this.password = password;
-    ledgerList = new ArrayList<>();
+    ledgerItems = new ArrayList<>();
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public List<LedgerItem> getLedgerItems() {
+    return ledgerItems;
+  }
+
+  public String getPassword() {
+    return password;
   }
 }

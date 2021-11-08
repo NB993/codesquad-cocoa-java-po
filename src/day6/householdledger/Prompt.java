@@ -36,16 +36,12 @@ public class Prompt {
     return answer.toUpperCase();
   }
 
-  public String inputNewItem() {
-    String newItem = null;
+  public LedgerItem inputNewItem() {
+    String brief = inputBrief();
+    double income = inputIncome();
+    double outcome = inputCotcome();
 
-    try {
-      newItem = br.readLine();
-    } catch (IOException e) {
-      //처리 했다 치고
-    }
-
-    return newItem;
+    return new LedgerItem(0, brief, income, outcome);
   }
 
   public int inputTaskSelection() {
@@ -76,5 +72,51 @@ public class Prompt {
 
     }
     return isTaskGoingOn.equals("Y") ? true : false;
+  }
+
+  public void inputAdd() {
+  }
+
+  private String inputBrief() {
+    
+  }
+
+  private double inputIncome() {
+    return 0;
+  }
+  private double inputCotcome() {
+    return 0;
+  }
+
+
+  public void inputDelete() {
+  }
+
+  public int inputItemOrder() {
+    System.out.println("수정할 항목 번호를 입력해주세요.");
+    int order = 0;
+    
+    try {
+      order = Integer.parseInt(br.readLine());
+    } catch (IOException e) {
+      //했다 치고
+    }
+    
+    return order;
+  }
+
+  public String inputPassword() {
+    String password = null;
+
+    try {
+      password = br.readLine();
+    } catch (IOException e) {
+      //했다 치고
+    }
+
+    return password;
+  }
+
+  public void printCurrentLedger() {
   }
 }
