@@ -25,4 +25,8 @@ public class User {
   public String getPassword() {
     return password;
   }
+
+  public void addLedgerItem(LedgerItem item) {
+    ledgerItems.add(item);
+  }
 }

@@ -3,17 +3,18 @@ package day6.householdledger;
 import java.util.*;
 
 public class HouseHoldLedger {
-  Map<User, List<LedgerItem>> users = new HashMap<>();
-  private String currentUser;
-  private List<LedgerItem> itemsOfCurrUser;
+
+  private final Map<String, User> users = new HashMap<>();
+  private User currentUser;
+  private List<LedgerItem> itemsOfCurrUser = new ArrayList<>();
 
   public boolean checkHasUser(String userName) {
     Iterator iterator = users.keySet().iterator();
 
     while (iterator.hasNext()) {
-      User user = (User) iterator.next();
+      User user = (User) users.get(iterator.next());
 
-      if(user.getName().equals(userName)) {
+      if (user.getName().equals(userName)) {
         return true;
       }
     }
@@ -23,27 +24,27 @@ public class HouseHoldLedger {
 
   public boolean registerUser(String userName, String password) {
     User newUser = new User(userName, password);
-    List<LedgerItem> ledgerItems = new ArrayList<>();
-
-    users.put(newUser, ledgerItems);
+    users.put(userName, newUser);
 
     return true;
   }
 
-  public void signIn(String userName, String password) {
+  public boolean signIn(String userName, String password) {
     if (isPasswordCorrect(userName, password)) {
-      currentUser = userName;
-
+      return true;
     }
+    return false;
   }
 
   private boolean isPasswordCorrect(String userName, String password) {
     Iterator iterator = users.keySet().iterator();
 
     while (iterator.hasNext()) {
-      User user = (User) iterator.next();
+      String nameKey = (String) iterator.next();
+      User user = (User) users.get(nameKey);
 
       if (user.getName().equals(userName)) {
+        currentUser = user;
         return user.getPassword().equals(password);
       }
     }
@@ -53,23 +54,31 @@ public class HouseHoldLedger {
 
   public void doTask(int taskNum) {
 
-
   }
 
 
   private void loadLedgerItems(String currentUser) {
-    Iterator iterator = users.iterator();
+    Iterator iterator = users.keySet().iterator();
 
-    while (iterator.hasNext()) {
-      Map<User, List<LedgerItem>> user = (Map<User, List<LedgerItem>>) iterator.next();
+    while (iterator.hasNext()) {//users Map의 iterator
+      User user = (User) users.get(iterator.next());
 
-      if (user.containsKey(currentUser)) {
-        itemsOfCurrUser = user.get(currentUser);
+      if (user.getName().equals(currentUser)) {
+        itemsOfCurrUser = user.getLedgerItems();
+        System.out.println(itemsOfCurrUser);
       }
     }
+
   }
 
   public void edit(int order, LedgerItem item) {
 
+  }
+
+  public void changeUser() {
+  }
+
+  public User getCurrentUser() {
+    return currentUser;
   }
 }
