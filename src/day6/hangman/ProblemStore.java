@@ -2,12 +2,12 @@ package day6.hangman;
 
 import java.util.*;
 
-public class Problems {
+public class ProblemStore {
   private List<Problem> problems = new ArrayList<>();
 
   public Problem getRandomProblem() {
-    int randomIndex = (int) Math.random() * problems.size();
-    return problems.get(randomIndex);
+    Random random = new Random();
+    return problems.get(random.nextInt(problems.size()));
   }
 
   public List<Problem> getProblems() {

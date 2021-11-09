@@ -7,18 +7,46 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 public class Game {
-  private List<Problem> problems;
+  private ProblemStore problemStore;
+  private User user;
   private Scanner sc = new Scanner(System.in);
+  private Print print = new Print();
+  private HangMan hangMan = new HangMan();
 
   public void init() {
-    problems = new Problems().getProblems();
-    List<Problem> fileData = loadProblems("hangman-words");
-    problems.addAll((List) fileData);
+    user = new User("p.o");
+    problemStore = new ProblemStore();
+    List<Problem> problems = loadProblems("hangman-words");
+    problemStore.getProblems().addAll((List) problems);
   }
 
   public void start() {
-    Problem problem = problems.getㅋㅋ
-    String alphabet = sc.next();
+    Problem problem = problemStore.getRandomProblem();
+    String answer = problem.getAnswer();
+    print.printBlankOfAnswerLength(answer);
+    String alphabet;
+    int userLife;
+
+    //TODO: 임시로 정답 표시. 나중에 지우기
+    System.out.println("정답은:" + answer);
+    
+    while (user.getLife() != 0) {
+      alphabet = sc.next();
+
+      if (!answer.contains(alphabet)) {
+        System.out.println("틀렸습니다. 라이프를 차감합니다.");
+        user.minusLife();
+        userLife = user.getLife();
+        hangMan.stackUpHangMan(userLife);
+        print.printUserLife(userLife);
+        print.printHangman(hangMan);
+
+        continue; //continue 말고 다른 방법은 없을까?
+      }
+
+      System.out.println("정답");
+    }
+
   }
 
   public void showResult() {
