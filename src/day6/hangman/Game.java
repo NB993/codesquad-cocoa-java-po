@@ -23,6 +23,9 @@ public class Game {
   public void start() {
     Problem problem = problemStore.getRandomProblem();
     String answer = problem.getAnswer();
+    int neededAnswerCount = getNeededAnswerCount(answer);
+    int currentAnswerCount = 0;
+
     print.printBlankOfAnswerLength(answer);
     String alphabet;
     int userLife;
@@ -44,9 +47,29 @@ public class Game {
         continue; //continue 말고 다른 방법은 없을까?
       }
 
-      System.out.println("정답");
+      System.out.println("정답!");
+
     }
 
+    if (checkDoNextGame()) {
+      start();
+      return;
+    };
+
+    System.out.println("프로그램 종료");
+
+  }
+
+  private int getNeededAnswerCount(String answer) {
+    String[] alphabetArr = answer.split("");
+    List<String> alphabetList = new ArrayList<>(Arrays.asList(alphabetArr));
+    Set<String> alphabetSet = new HashSet<>(alphabetList);
+    return alphabetSet.size();
+  }
+
+  private boolean checkDoNextGame() {
+    System.out.println("게임 종료. 다시 하시겠습니까?(y/Y) 그만하시려면 아무키나 입력해주세요.");
+    return sc.nextLine() == "Y" ? true : false;
   }
 
   public void showResult() {
