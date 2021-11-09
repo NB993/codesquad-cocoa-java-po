@@ -46,21 +46,22 @@ public class Main {
       prompt.printCurrentLedger(ledgerItems);
 
       boolean isTaskGoingOn = true;
-      while (isTaskGoingOn) {
+      while (isTaskGoingOn) { //taskNum을 while문에서 비교해가지고 변수를 하나로 합치면 작업 계속할지말지
+        //추가 작업뭐할지를 물어보는 단계를 하나로 합칠 수 있다.
 
         int taskNum = prompt.inputTaskSelection();
 
         switch (taskNum) {
           case ADD:
-            order = ledgerItems.size();
-            item = prompt.inputNewItem(order + 1);
+//            order = ledgerItems.size();
+            item = prompt.inputNewItem();
             ledgerItems.add(item);
             break;
           case EDIT:
             //수정할 항목 번호를 입력받은 후, 해당 항목을 지우고 새로 만들어서 갈아끼우는 식.
             //Q. setter로 order프로퍼티를 수정하면 안되는지? 코드를 작성하다보니 setter가 절실해짐..
             order = prompt.inputItemOrder();
-            item = prompt.inputNewItem(order);
+            item = prompt.inputNewItem();
             ledgerItems.remove(order - 1);
             ledgerItems.add(order - 1, item);
             break;

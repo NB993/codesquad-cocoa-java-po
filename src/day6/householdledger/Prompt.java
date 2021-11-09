@@ -1,6 +1,7 @@
 package day6.householdledger;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -38,12 +39,35 @@ public class Prompt {
     return answer.toUpperCase();
   }
 
-  public LedgerItem inputNewItem(int numbering) {
+  public LedgerItem inputNewItem() {
+    LocalDate date = inputDate();
     String brief = inputBrief();
     int income = inputIncome();
     int expenses = inputExpenses();
 
-    return new LedgerItem(numbering, brief, income, expenses);
+    return new LedgerItem(date, brief, income, expenses);
+  }
+
+  private LocalDate inputDate() {
+    System.out.println("날짜를 입력해주세요. ex) 2021.8.17");
+
+    LocalDate date = null;
+    String[] dateArr;
+    int year, month, day;
+
+    try {
+      dateArr = br.readLine().split(".");
+      year = Integer.parseInt(dateArr[0]);
+      month = Integer.parseInt(dateArr[1]);
+      day = Integer.parseInt(dateArr[2]);
+
+      date = LocalDate.of(year, month, day);
+    } catch (IOException e) {
+      System.out.println("제시된 형식으로 입력해주세요.");
+      return inputDate();
+    }
+
+    return date;
   }
 
   public int inputTaskSelection() {
@@ -142,14 +166,14 @@ public class Prompt {
 
   public void printCurrentLedger(List<LedgerItem> ledgerItems) {
     LedgerItem item;
+    int orderCount = 1;
 
-//    Collections.sort(ledgerItems);
+    Collections.sort(ledgerItems); //날짜기준으로 정렬
 
     Iterator iterator = ledgerItems.iterator();
-
     while (iterator.hasNext()) {
       item = (LedgerItem) iterator.next();
-      System.out.printf("|%-2d| [적요] %-10s   [수입] %10d  [지출] %10d \n", item.getOrder(), item.getBrief(),
+      System.out.printf("|%-2d| [적요] %-10s   [수입] %10d  [지출] %10d \n", orderCount++, item.getBrief(),
         item.getIncome(), item.getExpenses());
 
     }
