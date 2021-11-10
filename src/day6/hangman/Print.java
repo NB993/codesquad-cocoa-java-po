@@ -26,7 +26,7 @@ public class Print {
     int index;
 
     while ((index = answer.indexOf(alphabet)) > -1) {
-
+      answerBlank
     }
   }
 
@@ -40,4 +40,8 @@ public class Print {
     makeBlankVisibleAlphabet(alphabet);
   }
 
+  public void makeAnswerBlank() {
+    String[] splitedAnswer = answer.split("");
+    answerBlank = String.join(" ", splitedAnswer);
+  }
 }
