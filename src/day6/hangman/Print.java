@@ -14,8 +14,8 @@ public class Print {
   }
 
   public void printAnswerBlank() {
-    String[] dividedAnswerBlank= divideSomeWord(answerBlank);
-    addSpaceBetweenEach(dividedAnswerBlank);
+    String[] dividedAnswerBlank = divideSomeWord(answerBlank);
+    answerBlank = addStringBetweenEach(dividedAnswerBlank, " ");
     System.out.println(answerBlank);
   }
 
@@ -23,24 +23,23 @@ public class Print {
     this.answer = answer;
   }
 
-  public void makeBlankVisibleAlphabet(String alphabet) {
-    int index;
-    String[] dividedAnswerBlank = answerBlank.split(" ");
-
-    while ((index = answer.indexOf(alphabet)) > -1) {
-      dividedAnswerBlank[index] = alphabet;
-    }
-
-    addSpaceBetweenEach();
-    printAnswerBlank();
-  }
-
-  private String addSpaceBetweenEach(String[] splitWordArr) {
-    return String.join(" ", splitWordArr);
+  private String addStringBetweenEach(String[] splitWordArr, String addString) {
+    return String.join(addString, splitWordArr);
   }
 
   public void printGotRight(String alphabet) {
     makeBlankVisibleAlphabet(alphabet);
+  }
+  public void makeBlankVisibleAlphabet(String alphabet) {
+    int index = -1;
+    String[] dividedAnswerBlank = divideSomeWord(answerBlank);
+
+    while ((index += answer.indexOf(alphabet)) > -1) {
+      dividedAnswerBlank[index] = alphabet;
+    }
+
+    addStringBetweenEach(dividedAnswerBlank, " ");
+    printAnswerBlank();
   }
 
   public String[] divideSomeWord(String word) {
@@ -48,7 +47,7 @@ public class Print {
   }
 
   public void makeAnswerBlank() {
-    String[] splitedAnswer = divideSomeWord(answer);
-    answerBlank = addSpaceBetweenEach(splitedAnswer);
+    answerBlank = "_ ".repeat(answer.length());
+    answerBlank = answerBlank.substring(0, answerBlank.length() - 1);
   }
 }
