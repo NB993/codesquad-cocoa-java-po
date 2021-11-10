@@ -21,7 +21,15 @@ public class User {
     return life;
   }
 
+  public int getAnswerCount() {
+    return answerCount;
+  }
+
   public void answerCountUp() {
     answerCount++;
+  }
+
+  public void initializeLife() {
+    life = 10;
   }
 }
