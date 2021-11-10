@@ -12,7 +12,7 @@ public class Game {
   private Scanner sc = new Scanner(System.in);
   private Print print = new Print();
   private HangMan hangMan = new HangMan();
-  private List<String> usedAlphabets = new ArrayList<>();
+  private List<String> usedAlphabets;
 
   public void init() {
     user = new User("p.o");
@@ -23,6 +23,7 @@ public class Game {
 
   public void start() {
     user.initializeLife();
+    usedAlphabets = new ArrayList<>();
     Problem problem = problemStore.getRandomProblem();
     String answer = problem.getAnswer();
     String input;
@@ -37,7 +38,7 @@ public class Game {
 
     while (user.getLife() != 0) {
       print.printUsedAlphabet(usedAlphabets);
-      System.out.print("알파벳 입력 [힌트:숫자1 / 종료:0] >>");
+      System.out.print("알파벳 입력 [1:힌트 / 2:다른 문제 / 0:종료] >>");
       input = sc.next();
 
       if (input.equals("1")) {
@@ -46,6 +47,11 @@ public class Game {
         print.printAnswerBlank();
         print.printUserLife(user);
         continue;
+      }
+
+      if (input.equals("2")) {
+        start();
+        return;
       }
 
       if (input.equals("0")) {
