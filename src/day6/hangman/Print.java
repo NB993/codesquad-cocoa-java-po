@@ -6,7 +6,7 @@ public class Print {
   String answerBlank;
 
   public void printUserLife(User user) {
-    System.out.println("남은 기회 " + user.getLife() + "회");
+    System.out.println("(남은 기회 " + user.getLife() + "회)");
   }
 
   public void printHangman(HangMan hangMan) {
@@ -14,14 +14,14 @@ public class Print {
   }
 
   public void printAnswerBlank() {
-    System.out.println(answerBlank);
+    System.out.print("문제 :   " + answerBlank + "           ");
   }
 
   public void addAnswer(String answer) {
     this.answer = answer;
   }
 
-  public void printGotRight(String alphabet) {
+  public void printRightAlphabet(String alphabet) {
     makeBlankVisibleAlphabet(alphabet);
   }
   public void makeBlankVisibleAlphabet(String alphabet) {
