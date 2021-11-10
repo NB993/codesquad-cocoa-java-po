@@ -36,8 +36,9 @@ public class Game {
     print.printUserLife(user);
 
     while (user.getLife() != 0) {
+      print.printUsedAlphabet(usedAlphabets);
       System.out.print("알파벳 입력 [힌트:숫자1 / 종료:0] >>");
-      input = sc.next().toUpperCase();
+      input = sc.next();
 
       if (input.equals("1")) {
         String hint = problem.getHint();

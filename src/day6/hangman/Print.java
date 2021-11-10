@@ -1,5 +1,7 @@
 package day6.hangman;
 
+import java.util.List;
+
 public class Print {
 
   String answer;
@@ -44,5 +46,15 @@ public class Print {
 
   public void printHint(String hint) {
     System.out.println("*** 힌트 : " + hint + " ***");
+  }
+
+  public void printUsedAlphabet(List<String> usedAlphabets) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("사용된 알파벳 :");
+    for (String alphabet : usedAlphabets) {
+      sb.append(" [" + alphabet + "]");
+    }
+
+    System.out.println(sb.toString());
   }
 }
