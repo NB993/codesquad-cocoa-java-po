@@ -21,9 +21,6 @@ public class Print {
     this.answer = answer;
   }
 
-  public void printRightAlphabet(String alphabet) {
-    makeBlankVisibleAlphabet(alphabet);
-  }
   public void makeBlankVisibleAlphabet(String alphabet) {
     int index = 0;
     String[] dividedAnswerBlank = divideSomeWord(answerBlank, " ");
@@ -34,7 +31,6 @@ public class Print {
     }
 
     answerBlank = String.join(" ", dividedAnswerBlank);
-    printAnswerBlank();
   }
 
   public String[] divideSomeWord(String word, String delimeter) {
@@ -47,6 +43,6 @@ public class Print {
   }
 
   public void printHint(String hint) {
-    System.out.println(hint);
+    System.out.println("*** 힌트 : " + hint + " ***");
   }
 }

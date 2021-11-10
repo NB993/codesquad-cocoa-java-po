@@ -12,6 +12,7 @@ public class Game {
   private Scanner sc = new Scanner(System.in);
   private Print print = new Print();
   private HangMan hangMan = new HangMan();
+  private List<String> usedAlphabets = new ArrayList<>();
 
   public void init() {
     user = new User("p.o");
@@ -21,6 +22,7 @@ public class Game {
   }
 
   public void start() {
+    user.initializeLife();
     Problem problem = problemStore.getRandomProblem();
     String answer = problem.getAnswer();
     String input;
@@ -33,37 +35,53 @@ public class Game {
     print.printAnswerBlank();
     print.printUserLife(user);
 
-
     //TODO: 임시로 정답 표시. 나중에 지우기
-    System.out.println("정답은:" + answer);
+//    System.out.println("(임시)정답은:" + answer);
 
     while (user.getLife() != 0) {
-      System.out.print("알파벳을 입력해주세요(힌트를 보시려면 1을 입력) :");
-      input = sc.next();
+      System.out.print("알파벳 입력 [힌트:숫자1 / 종료:0] >>");
+      input = sc.next().toUpperCase();
+
 
       if (input.equals("1")) {
         String hint = problem.getHint();
         print.printHint(hint);
+        print.printAnswerBlank();
+        print.printUserLife(user);
+        continue;
       }
+
+      if (input.equals("0")) {
+        System.out.println("프로그램 종료");
+        return;
+      }
+
+      if (checkIsUsedAlphabet(input)) {
+        System.out.println("이미 입력된 알파벳입니다. 다른 알파벳을 입력해주세요.\n");
+        continue;
+      }
+      usedAlphabets.add(input);
 
       //오답
       if (!answer.contains(input)) {
-        System.out.print("틀렸습니다.");
+        System.out.println("[X]입력하신 알파벳이 없습니다.");
         user.minusLife();
         userLife = user.getLife();
         hangMan.stackUpHangMan(userLife);
-        print.printUserLife(user);
         print.printHangman(hangMan);
+        print.printAnswerBlank();
+        print.printUserLife(user);
 
         continue; //continue 말고 다른 방법은 없을까?
       }
       //정답
       if(++currentAnswerCount == neededAnswerCount) {
-        System.out.println("알파벳을 모두 맞췄습니다. 정답은 " + answer + "입니다.");
+        System.out.println("[알파벳을 모두 맞췄습니다. 정답은 " + answer + "입니다]");
         break; //다른 방법 없냐..?
       }
-      System.out.println("알파벳 하나 정답!");
-      print.printGotRight(input);
+      System.out.println("[O]알파벳을 찾았습니다.\n");
+      print.makeBlankVisibleAlphabet(input);
+      print.printAnswerBlank();
       print.printUserLife(user);
     }
 
@@ -74,6 +92,12 @@ public class Game {
 
     System.out.println("프로그램 종료");
 
+  }//start()
+
+  //TODO: 쓴 알파벳인지 체크 stream으로
+  private boolean checkIsUsedAlphabet(String input) {
+    return usedAlphabets.contains((String) input);
+    //파라미터 타입이 Object니까 아마 내부적으로 hashCode()를 호출해서 체크?
   }
 
   private int getNeededAnswerCount(String answer) {
@@ -84,7 +108,7 @@ public class Game {
   }
 
   private boolean checkDoNextGame() {
-    System.out.println("게임 종료. 다시 하시겠습니까?(y/Y) 그만하시려면 아무키나 입력해주세요.");
+    System.out.println("Game Over. 다시 하시겠습니까?(y/Y) 그만하시려면 아무키나 입력해주세요.");
     sc.nextLine();
     String s = sc.nextLine().toUpperCase();
     return s.equals("Y") ? true : false;
