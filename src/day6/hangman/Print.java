@@ -13,35 +13,42 @@ public class Print {
     System.out.println(hangMan);
   }
 
-  public void printAnswerBlank(String answer) {
-
-    addSpaceBetweenEach();
+  public void printAnswerBlank() {
+    addSpaceBetweenEach(answerBlank);
   }
 
-  public void retainAnswer(String answer) {
+  public void addAnswer(String answer) {
     this.answer = answer;
   }
 
   public void makeBlankVisibleAlphabet(String alphabet) {
     int index;
+    String[] splitedAnswerBlank = answerBlank.split(" ");
 
     while ((index = answer.indexOf(alphabet)) > -1) {
-      answerBlank
+      splitedAnswerBlank[index] = alphabet;
     }
+
+    addSpaceBetweenEach()
+    printAnswerBlank();
   }
 
-  private void addSpaceBetweenEach() {
-    String[] splitedAnswerBlank = answerBlank.split("");
-
-    System.out.println(String.join(" ", splitedAnswerBlank);
+  private void addSpaceBetweenEach(String someWord) {
+    String[] splitedWord = someWord.split("");
+    System.out.println(String.join(" ", splitedWord);
   }
 
   public void printGotRight(String alphabet) {
     makeBlankVisibleAlphabet(alphabet);
   }
 
+  public String[] splitSomeWord(String word) {
+    return word.split("");
+  }
+
   public void makeAnswerBlank() {
-    String[] splitedAnswer = answer.split("");
+
+    String[] splitedAnswer = addSpaceBetweenEach(answer);
     answerBlank = String.join(" ", splitedAnswer);
   }
 }
