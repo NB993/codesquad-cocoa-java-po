@@ -35,13 +35,9 @@ public class Game {
     print.printAnswerBlank();
     print.printUserLife(user);
 
-    //TODO: 임시로 정답 표시. 나중에 지우기
-//    System.out.println("(임시)정답은:" + answer);
-
     while (user.getLife() != 0) {
       System.out.print("알파벳 입력 [힌트:숫자1 / 종료:0] >>");
       input = sc.next().toUpperCase();
-
 
       if (input.equals("1")) {
         String hint = problem.getHint();
@@ -62,7 +58,6 @@ public class Game {
       }
       usedAlphabets.add(input);
 
-      //오답
       if (!answer.contains(input)) {
         System.out.println("[X]입력하신 알파벳이 없습니다.");
         user.minusLife();
@@ -72,12 +67,12 @@ public class Game {
         print.printAnswerBlank();
         print.printUserLife(user);
 
-        continue; //continue 말고 다른 방법은 없을까?
+        continue;
       }
-      //정답
+
       if(++currentAnswerCount == neededAnswerCount) {
         System.out.println("[알파벳을 모두 맞췄습니다. 정답은 " + answer + "입니다]");
-        break; //다른 방법 없냐..?
+        break;
       }
       System.out.println("[O]알파벳을 찾았습니다.\n");
       print.makeBlankVisibleAlphabet(input);
@@ -94,10 +89,8 @@ public class Game {
 
   }//start()
 
-  //TODO: 쓴 알파벳인지 체크 stream으로
   private boolean checkIsUsedAlphabet(String input) {
     return usedAlphabets.contains((String) input);
-    //파라미터 타입이 Object니까 아마 내부적으로 hashCode()를 호출해서 체크?
   }
 
   private int getNeededAnswerCount(String answer) {
