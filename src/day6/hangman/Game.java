@@ -23,32 +23,48 @@ public class Game {
   public void start() {
     Problem problem = problemStore.getRandomProblem();
     String answer = problem.getAnswer();
+    String input;
+    int userLife;
     int neededAnswerCount = getNeededAnswerCount(answer);
     int currentAnswerCount = 0;
 
-    print.printBlankOfAnswerLength(answer);
-    String alphabet;
-    int userLife;
+    print.addAnswer(answer);
+    print.makeAnswerBlank();
+    print.printAnswerBlank();
+    print.printUserLife(user);
+
 
     //TODO: 임시로 정답 표시. 나중에 지우기
     System.out.println("정답은:" + answer);
-    
-    while (user.getLife() != 0) {
-      alphabet = sc.next();
 
-      if (!answer.contains(alphabet)) {
-        System.out.println("틀렸습니다. 라이프를 차감합니다.");
+    while (user.getLife() != 0) {
+      System.out.print("알파벳을 입력해주세요(힌트를 보시려면 1을 입력) :");
+      input = sc.next();
+
+      if (input.equals("1")) {
+        String hint = getHint(problem);
+        print.printHint(hint);
+      }
+
+      //오답
+      if (!answer.contains(input)) {
+        System.out.print("틀렸습니다.");
         user.minusLife();
         userLife = user.getLife();
         hangMan.stackUpHangMan(userLife);
-        print.printUserLife(userLife);
+        print.printUserLife(user);
         print.printHangman(hangMan);
 
         continue; //continue 말고 다른 방법은 없을까?
       }
-
-      System.out.println("정답!");
-
+      //정답
+      if(++currentAnswerCount == neededAnswerCount) {
+        System.out.println("알파벳을 모두 맞췄습니다. 정답은 " + answer + "입니다.");
+        break; //다른 방법 없냐..?
+      }
+      System.out.println("알파벳 하나 정답!");
+      print.printGotRight(input);
+      print.printUserLife(user);
     }
 
     if (checkDoNextGame()) {
@@ -60,6 +76,10 @@ public class Game {
 
   }
 
+  private String getHint(Problem problem) {
+    return problem.getHint();
+  }
+
   private int getNeededAnswerCount(String answer) {
     String[] alphabetArr = answer.split("");
     List<String> alphabetList = new ArrayList<>(Arrays.asList(alphabetArr));
@@ -69,7 +89,9 @@ public class Game {
 
   private boolean checkDoNextGame() {
     System.out.println("게임 종료. 다시 하시겠습니까?(y/Y) 그만하시려면 아무키나 입력해주세요.");
-    return sc.nextLine() == "Y" ? true : false;
+    sc.nextLine();
+    String s = sc.nextLine().toUpperCase();
+    return s.equals("Y") ? true : false;
   }
 
   public void showResult() {
