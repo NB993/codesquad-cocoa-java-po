@@ -1,5 +1,6 @@
 package day6.hangman;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Print {
@@ -51,6 +52,8 @@ public class Print {
   public void printUsedAlphabet(List<String> usedAlphabets) {
     StringBuilder sb = new StringBuilder();
     sb.append("사용된 알파벳 :");
+
+    Collections.sort(usedAlphabets);
     for (String alphabet : usedAlphabets) {
       sb.append(" [" + alphabet + "]");
     }
