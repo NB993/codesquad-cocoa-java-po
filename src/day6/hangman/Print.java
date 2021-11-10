@@ -14,8 +14,8 @@ public class Print {
   }
 
   public void printAnswerBlank() {
-    String[] dividedAnswerBlank = divideSomeWord(answerBlank);
-    answerBlank = addStringBetweenEach(dividedAnswerBlank, " ");
+//    String[] dividedAnswerBlank = divideSomeWord(answerBlank, " ");
+//    answerBlank = addStringBetweenEach(dividedAnswerBlank, " ");
     System.out.println(answerBlank);
   }
 
@@ -31,19 +31,23 @@ public class Print {
     makeBlankVisibleAlphabet(alphabet);
   }
   public void makeBlankVisibleAlphabet(String alphabet) {
-    int index = -1;
-    String[] dividedAnswerBlank = divideSomeWord(answerBlank);
+    int index = 0;
+    String[] dividedAnswerBlank = divideSomeWord(answerBlank, " ");
 
-    while ((index += answer.indexOf(alphabet)) > -1) {
+//    while ((index += answer.indexOf(alphabet)) > -1) {
+    while ((index = answer.indexOf(alphabet, index)) > -1) {
       dividedAnswerBlank[index] = alphabet;
+      System.out.println("이 인덱스에서 알파벳이 일치함: " + index);
+      index++;
+
     }
 
-    addStringBetweenEach(dividedAnswerBlank, " ");
+    answerBlank = String.join(" ", dividedAnswerBlank);
     printAnswerBlank();
   }
 
-  public String[] divideSomeWord(String word) {
-    return word.split("");
+  public String[] divideSomeWord(String word, String delimeter) {
+    return word.split(delimeter);
   }
 
   public void makeAnswerBlank() {
