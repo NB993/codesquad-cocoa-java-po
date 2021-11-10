@@ -42,7 +42,7 @@ public class Game {
       input = sc.next();
 
       if (input.equals("1")) {
-        String hint = getHint(problem);
+        String hint = problem.getHint();
         print.printHint(hint);
       }
 
@@ -74,10 +74,6 @@ public class Game {
 
     System.out.println("프로그램 종료");
 
-  }
-
-  private String getHint(Problem problem) {
-    return problem.getHint();
   }
 
   private int getNeededAnswerCount(String answer) {
