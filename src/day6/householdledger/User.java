@@ -1,4 +1,4 @@
-package day6.householdledger_original;
+package day6.householdledger;
 
 import java.util.ArrayList;
 import java.util.List;

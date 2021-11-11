@@ -1,6 +1,7 @@
 package day6.hangman;
 
 import java.util.Arrays;
+import org.w3c.dom.ls.LSOutput;
 
 public class HangMan {
   String currentHangManStack = "";
@@ -23,6 +24,16 @@ public class HangMan {
 
   public void stackUpHangMan(int life) {
     currentHangManStack = hangmanPrintArr[life] + "\n" + currentHangManStack;
+    System.out.println("   ____________");
+    System.out.println("   |          _|_");
+    System.out.println("   |         /   \\");
+    System.out.println("   |        |     |");
+    System.out.println("   |         \\_ _/");
+    System.out.println("   |        ---|---");
+    System.out.println("   |           |");
+    System.out.println("   |          / \\ ");
+    System.out.println("   |         /   \\");
+    System.out.println("___|______");
   }
 
   @Override

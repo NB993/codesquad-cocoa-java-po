@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class Prompt {
+public class Print {
 
   final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

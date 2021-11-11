@@ -2,7 +2,7 @@ package day6.householdledger;
 
 import java.util.*;
 
-public class HouseHoldLedger {
+public class Ledger {
 
   private final Map<String, User> users = new HashMap<>();
   private User currentUser;
