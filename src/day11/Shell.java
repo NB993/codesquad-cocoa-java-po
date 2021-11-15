@@ -18,15 +18,11 @@ public class Shell {
 
   //거대한 컨트롤러 역할 메서드
   public void exec() {
-    String command;
-    try {
-      command = commandLine.input();
-      if (!checkIsCommandExist(command)) {
-        System.out.println("존재하지 않는 명령어입니다.");
-        return;
-      }
-    } catch (IllegalArgumentException e) {
-      System.out.println("잘못된 명령어입니다");
+    commandLine.input();
+
+    String command = commandLine.getCommand();
+    if (!checkIsCommandExist(command)) {
+      System.out.println("존재하지 않는 명령어입니다.");
       return;
     }
 
@@ -34,7 +30,7 @@ public class Shell {
   }
 
   private boolean checkIsCommandExist(String command) {
-    return commands.getCommands().contains((String) command);
+    return commands.getCommands().contains(command);
   }
 
   private void doTask(String command) {
@@ -46,7 +42,7 @@ public class Shell {
         pwd();
         break;
       case "cd":
-        cd(commandLine.getInputText());
+        cd(commandLine.getText());
         break;
       default:
         break;
