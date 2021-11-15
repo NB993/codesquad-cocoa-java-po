@@ -6,7 +6,7 @@ import java.util.*;
 public class CommandLine {
 
   Scanner sc = new Scanner(System.in);
-  String[] input;
+  private String[] input;
 
   public void input() throws IllegalArgumentException {
     System.out.print("posh>");
