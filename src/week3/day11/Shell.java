@@ -1,4 +1,4 @@
-package day11;
+package week3.day11;
 
 import java.io.File;
 
@@ -16,13 +16,11 @@ public class Shell {
     this.commands = new Commands();
   }
 
-  //거대한 컨트롤러 역할 메서드
   public void exec() {
     commandLine.input();
-
     String command = commandLine.getCommand();
+
     if (!checkIsCommandExist(command)) {
-      System.out.println("존재하지 않는 명령어입니다.");
       return;
     }
 
@@ -30,7 +28,11 @@ public class Shell {
   }
 
   private boolean checkIsCommandExist(String command) {
-    return commands.getCommands().contains(command);
+    if (!commands.getCommands().contains(command)) {
+      System.out.println("존재하지 않는 명령어입니다.");
+      return false;
+    }
+    return true;
   }
 
   private void doTask(String command) {
@@ -44,6 +46,9 @@ public class Shell {
       case "cd":
         cd(commandLine.getText());
         break;
+      case "q":
+        isRunning = false;
+        break;
       default:
         break;
     }
@@ -55,7 +60,7 @@ public class Shell {
     String currentPath = path.getCurrentPath();
 
     if (direcArr[0].equals("..")) {
-//      currentPath.substring(0, currentPath.lastIndexOf())
+
     }
 
   }

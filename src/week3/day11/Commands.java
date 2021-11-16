@@ -1,4 +1,4 @@
-package day11;
+package week3.day11;
 
 import java.util.*;
 
@@ -10,6 +10,7 @@ public class Commands {
     commands.add("ls");
     commands.add("pwd");
     commands.add("cd");
+    commands.add("q");
 
     this.commands = commands;
   }
