@@ -8,12 +8,15 @@ public class Shell {
   Path path;
   CommandLine commandLine;
   Commands commands;
+  Thread clockThread;
 
   public Shell() {
     this.isRunning = true;
     this.path = new Path();
     this.commandLine = new CommandLine();
     this.commands = new Commands();
+    this.clockThread = new Thread(new ClockThread());
+    this.clockThread.setDaemon(true);
   }
 
   public void exec() {
@@ -46,6 +49,11 @@ public class Shell {
       case "cd":
         cd(commandLine.getText());
         break;
+      case "hclock":
+        try {
+          clock(commandLine.getText());
+        } catch (InterruptedException e ) {}
+        break;
       case "q":
         isRunning = false;
         break;
@@ -53,6 +61,16 @@ public class Shell {
         break;
     }
 
+  }
+
+  private void clock(String flag) throws InterruptedException {
+    if (flag.equals("-s")) {
+      clockThread.start();
+    }
+
+    if (flag.equals("-q")) {
+      clockThread.interrupt();
+    }
   }
 
   private void cd(String directory) {

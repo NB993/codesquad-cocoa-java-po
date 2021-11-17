@@ -10,6 +10,7 @@ public class Commands {
     commands.add("ls");
     commands.add("pwd");
     commands.add("cd");
+    commands.add("hclock");
     commands.add("q");
 
     this.commands = commands;
