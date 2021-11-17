@@ -117,7 +117,7 @@ public class Clock {
   }
 
   private void unitDigitColor(String minute) {
-    switch(minute) {
+    switch (minute) {
       case "1":
         time[4][1] = ANSI_GREEN + time[4][1] + ANSI_RESET;
         break;
@@ -137,13 +137,13 @@ public class Clock {
         time[4][5] = ANSI_GREEN + time[4][5] + ANSI_RESET;
         break;
       case "7":
-        time[6][2] = ANSI_GREEN + time[6][2] + ANSI_RESET;
+        time[5][2] = ANSI_GREEN + time[5][2] + ANSI_RESET;
         break;
       case "8":
-        time[6][3] = ANSI_GREEN + time[6][3] + ANSI_RESET;
+        time[5][3] = ANSI_GREEN + time[5][3] + ANSI_RESET;
         break;
       case "9":
-        time[6][4] = ANSI_GREEN + time[6][4] + ANSI_RESET;
+        time[5][4] = ANSI_GREEN + time[5][4] + ANSI_RESET;
         break;
       default:
         break;
@@ -188,7 +188,6 @@ public class Clock {
     System.out.println(sb.toString());
     System.out.print("posh>");
   }
-
 
 
 }
