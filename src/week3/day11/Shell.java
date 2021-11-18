@@ -15,8 +15,8 @@ public class Shell {
     this.path = new Path();
     this.commandLine = new CommandLine();
     this.commands = new Commands();
-    this.clockThread = new Thread(new ClockThread());
-    this.clockThread.setDaemon(true);
+//    this.clockThread = new Thread(new ClockThread());
+//    this.clockThread.setDaemon(true);
   }
 
   public void exec() {
@@ -65,6 +65,8 @@ public class Shell {
 
   private void clock(String flag) throws InterruptedException {
     if (flag.equals("-s")) {
+      clockThread = new Thread(new ClockThread());
+      clockThread.setDaemon(true);
       clockThread.start();
     }
 
