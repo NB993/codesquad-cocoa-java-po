@@ -14,10 +14,10 @@ public class CommandLine {
     String[] input = sc.nextLine().split(" ");
 
     command = input[0];
-    if (input[1] != null) {
+    if (input.length > 1) {
       flag = input[1];
     }
-    if (input[2] != null) {
+    if (input.length > 2) {
       text = input[2];
     }
   }
@@ -35,4 +35,9 @@ public class CommandLine {
   }
 
 
+  public void reset() {
+    command = null;
+    flag = null;
+    text = null;
+  }
 }
