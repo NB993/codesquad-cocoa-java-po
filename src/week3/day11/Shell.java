@@ -72,6 +72,7 @@ public class Shell {
 
     if (flag.equals("-q")) {
       clockThread.interrupt();
+
     }
   }
 
