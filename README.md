@@ -40,6 +40,7 @@
 * <a href="https://velog.io/@take/Day11-d5ermn5o">Day11</a>
 * <a href="https://velog.io/@take/Day12">Day12</a>
 * <a href="https://velog.io/@take/Day13">Day13</a>
+* <a href="https://velog.io/@take/Day14">Day14</a>
 
 
 
