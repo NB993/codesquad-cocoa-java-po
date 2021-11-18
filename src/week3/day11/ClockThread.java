@@ -1,20 +1,17 @@
 package week3.day11;
 
-import java.time.LocalDate;
-
-public class ClockThread implements Runnable {
-
+public class ClockThread extends Thread {
   Clock clock = new Clock();
 
   @Override
   public void run() {
-    while (!Thread.currentThread().isInterrupted()) { //왜 이게 계속 false지? shell에서 INterrupt했는데
+    while (!interrupted()) {
       clock.print();
 
       try {
-        Thread.sleep(60 * 1000);
+        Thread.sleep(5 * 1000);
       } catch (InterruptedException e) {
-        break;
+        Thread.currentThread().interrupt();
       }
     }
   }
