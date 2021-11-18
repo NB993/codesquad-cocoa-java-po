@@ -11,6 +11,7 @@ public class Commands {
     commands.add("pwd");
     commands.add("cd");
     commands.add("hclock");
+    commands.add("calender");
     commands.add("q");
 
     this.commands = commands;
