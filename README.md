@@ -1,22 +1,27 @@
 ## 1주차
-* 구구단
-* 조건문
-* 반복문
-* 별찍기
-* 랜덤뽑기
-* 인디언식 이름 짓기
-* 초간단 RPG
-
+|미션|링크|
+|---|---|
+|구구단|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day1/gugudan">링크<a/>|
+|조건문|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day1/conditional">링크<a/>|
+|반복문|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day1/loop">링크<a/>|
+|별찍기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day1/printstar">링크<a/>|
+|랜덤뽑기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day3/mission0">링크<a/>|
+|인디언식 이름 짓기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day3/mission1">링크<a/>|
+|초간단 RPG|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day3/mission2">링크<a/>|
+|숫자 퍼즐(미완)|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week1/day3/mission3">링크<a/>|
 
 ## 2주차
-* hangman 게임
-* 가계부
+|미션|링크|
+|---|---|
+|hangman 게임|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week2/day6/hangman">링크<a/>|
+|가계부|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week2/day6/householdledger">링크<a/>|
 
 ## 3주차
-* 셸 구현하기
-* 한글 시계 스레드로 출력하기
+|미션|링크|
+|---|---|
+|셸 구현하기 + 한글 시계 스레드로 출력하기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week3/day11">링크<a/>|
 
-
+<br>
 <hr>
 
 ## 학습기록
