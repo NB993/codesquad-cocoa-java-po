@@ -41,6 +41,8 @@
 * <a href="https://velog.io/@take/Day12">Day12</a>
 * <a href="https://velog.io/@take/Day13">Day13</a>
 * <a href="https://velog.io/@take/Day14">Day14</a>
+* <a href="https://velog.io/@take/Day15">Day15</a>
+* <a href="https://velog.io/@take/3주차-주말">3주 차 주말</a>
 
 
 
