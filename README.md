@@ -24,6 +24,13 @@
 <br>
 <hr>
 
+## 4주차
+|미션|링크|
+|---|---|
+
+<br>
+<hr>
+
 ## 학습기록
 * <a href="https://velog.io/@take/Day1">Day1</a>
 * <a href="https://velog.io/@take/Day2">Day2</a>
@@ -43,6 +50,7 @@
 * <a href="https://velog.io/@take/Day14">Day14</a>
 * <a href="https://velog.io/@take/Day15">Day15</a>
 * <a href="https://velog.io/@take/3주차-주말">3주 차 주말</a>
+* <a href="https://velog.io/@take/Day16">Day16</a>
 
 
 
