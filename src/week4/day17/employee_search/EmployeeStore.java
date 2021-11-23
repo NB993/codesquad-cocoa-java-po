@@ -17,9 +17,7 @@ public class EmployeeStore {
     loadEmployeesFile();
   }
 
-  //TODO: 파일로 직원목록 불러오기
   private void loadEmployeesFile() {
-
     try {
       String path = this.getClass().getResource("").getPath();
       System.out.println(path);
@@ -29,14 +27,15 @@ public class EmployeeStore {
       String[] employeeData;
 
       while ((singleLine = br.readLine()) != null) {
-        employees.add(makeEmployee(singleLine.split(" ")));
+        addSingleEmployee(singleLine.split(" "));
       }
     } catch (IOException e) {
       System.out.println("문제 파일을 읽어오는 도중 에러가 발생하였습니다.");
     }
   }
 
-  private Employee makeEmployee(String[] employeeDate) {
-    return new Employee(employeeDate[0], employeeDate[1], employeeDate[2]);
+  private void addSingleEmployee(String[] employeeData) {
+    employees.add(new Employee(employeeData[0], employeeData[1], employeeData[2]));
   }
+
 }
