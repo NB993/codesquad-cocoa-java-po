@@ -2,6 +2,8 @@ package week4.day17.employee_search;
 
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -16,22 +18,11 @@ public class ResultPanel extends Panel {
   }
 
   private void initPanel() {
+    panel.setLayout(new GridLayout());
     panel.setBackground(Color.LIGHT_GRAY);
-    panel.setSize(300, 200);
-    panel.setLocation(400, 40);
+    panel.setSize(700, 150);
+    panel.setLocation(50, 230);
 
-    Label lbName = new Label("사번: ");
-    TextField textName = new TextField(20);
-    textName.setSize(100, 20);
-
-    Button btnSearch = new Button("검색");
-    btnSearch.addActionListener((e) -> {
-      System.out.println(textName.getText());
-    });
-
-    panel.add(lbName);
-    panel.add(textName);
-    panel.add(btnSearch);
   }
 
   public Panel getPanel() {
