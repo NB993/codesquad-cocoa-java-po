@@ -1,4 +1,4 @@
-package week4.day17;
+package week4.day17.employee_search;
 
 import java.awt.Dimension;
 import java.awt.Frame;
