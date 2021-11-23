@@ -7,6 +7,19 @@ public class Employee {
   String departmentCode;
   String employeeType;
 
+  public String getEmployeeId() {
+    return employeeId;
+  }
 
+  public String getName() {
+    return name;
+  }
 
+  public String getDepartmentCode() {
+    return departmentCode;
+  }
+
+  public String getEmployeeType() {
+    return employeeType;
+  }
 }
