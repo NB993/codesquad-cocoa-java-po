@@ -1,11 +1,13 @@
 package week4.day17.employee_search;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
-public class EmployeeSearchFrame {
+public class EmployeeSearchFrame extends Container {
+
   static final int DEFAULT_FRAME_WIDTH = 960;
   static final int DEFAULT_FRAME_HEIGHT = 540;
 
@@ -38,4 +40,5 @@ public class EmployeeSearchFrame {
   public Frame getFrame() {
     return frame;
   }
+
 }
