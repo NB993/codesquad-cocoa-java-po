@@ -7,6 +7,9 @@ public class Employee {
   String departmentCode;
   String employeeType;
 
+  public Employee(String s, String s1, String s2) {
+  }
+
   public String getEmployeeId() {
     return employeeId;
   }
