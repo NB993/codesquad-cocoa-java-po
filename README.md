@@ -27,6 +27,7 @@
 ## 4주차
 |미션|링크|
 |---|---|
+|AWT로 사원 검색 프로그램 만들어보기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week4/day17/employee_search">링크</a>|
 
 <br>
 <hr>
