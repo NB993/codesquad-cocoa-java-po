@@ -5,9 +5,11 @@ public class Employee {
   String employeeId;
   String name;
   String departmentCode;
-  String employeeType;
 
-  public Employee(String s, String s1, String s2) {
+  public Employee(String employeeId, String name, String departmentCode) {
+    this.employeeId = employeeId;
+    this.name = name;
+    this.departmentCode = departmentCode;
   }
 
   public String getEmployeeId() {
@@ -22,7 +24,4 @@ public class Employee {
     return departmentCode;
   }
 
-  public String getEmployeeType() {
-    return employeeType;
-  }
 }
