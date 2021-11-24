@@ -52,24 +52,50 @@ public class PaintFrame extends Frame {
 
   private void addEventListeners() {
     windowClose();
+    mouseMoving();
+    mouseReleased();
     mouseDragging();
-    mousePress();
+//    mousePress();
   }
 
-  private void mousePress() {
+  private void mouseReleased() {
     addMouseListener(new AdapterMouseListener() {
       @Override
-      public void mousePressed(MouseEvent e) {
+      public void mouseReleased(MouseEvent e) {
+        graphics.drawLine(
+            (int)drawStart.getX(),
+            (int)drawStart.getY(),
+            (int)drawEnd.getX(),
+            (int)drawEnd.getY()
+        );
+      }
+    });
+  }
+
+  private void mouseMoving() {
+    addMouseMotionListener(new AdapterMouseListener() {
+      @Override
+      public void mouseMoved(MouseEvent e) {
         drawStart.setLocation(e.getX(), e.getY());
       }
     });
   }
 
+//  private void mousePress() {/*
+//    addMouseListener(new AdapterMouseListener() {
+//      @Override
+//      public void mousePressed(MouseEvent e) {
+//        drawStart.setLocation(e.getX(), e.getY());
+//      }
+//    });
+//  }*/
+
   private void mouseDragging() {
     addMouseMotionListener(new AdapterMouseListener() {
       @Override
       public void mouseDragged(MouseEvent e) {
-        graphics.drawLine((int)drawStart.getX(), (int)drawStart.getY(), e.getX(), e.getY());
+//        graphics.drawLine((int)drawStart.getX(), (int)drawStart.getY(), e.getX(), e.getY());
+        drawEnd.setLocation(e.getX(), e.getY());
       }
     });
   }
