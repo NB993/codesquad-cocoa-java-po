@@ -22,12 +22,12 @@ public class PaintFrame extends Frame {
   PaintPanel paintPanel;
 
   public PaintFrame() {
-    initFrame();
-    this.graphics = getGraphics();
     this.toolBoxPanel = new ToolBoxPanel();
     this.paintPanel = new PaintPanel();
     this.drawStart = new Point();
     this.drawEnd = new Point();
+    initFrame();
+    this.graphics = getGraphics(); //Frame이 렌더링되기 전에 호출하면 null을 리턴함.
   }
 
   private void initFrame() {
@@ -45,7 +45,8 @@ public class PaintFrame extends Frame {
 
     addEventListeners();
 
-
+    this.add(toolBoxPanel);
+    this.add(paintPanel);
     setVisible(true);
   }
 
