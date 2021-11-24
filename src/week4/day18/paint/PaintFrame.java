@@ -15,7 +15,6 @@ public class PaintFrame extends Frame {
   static final int DEFAULT_FRAME_WIDTH = 1024;
   static final int DEFAULT_FRAME_HEIGHT = 600;
 
-//  Graphics graphics = this.getGraphics();
   Graphics graphics;
   Point drawStart;
   Point drawEnd;
@@ -52,10 +51,10 @@ public class PaintFrame extends Frame {
 
   private void addEventListeners() {
     windowClose();
-    mouseMoving();
+    mousePress();
     mouseReleased();
-    mouseDragging();
-//    mousePress();
+//    mouseMoving();
+//    mouseDragging();
   }
 
   private void mouseReleased() {
@@ -81,14 +80,14 @@ public class PaintFrame extends Frame {
     });
   }
 
-//  private void mousePress() {/*
-//    addMouseListener(new AdapterMouseListener() {
-//      @Override
-//      public void mousePressed(MouseEvent e) {
-//        drawStart.setLocation(e.getX(), e.getY());
-//      }
-//    });
-//  }*/
+  private void mousePress() {
+    addMouseListener(new AdapterMouseListener() {
+      @Override
+      public void mousePressed(MouseEvent e) {
+        drawStart.setLocation(e.getX(), e.getY());
+      }
+    });
+  }
 
   private void mouseDragging() {
     addMouseMotionListener(new AdapterMouseListener() {
