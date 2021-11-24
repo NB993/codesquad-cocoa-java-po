@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
@@ -16,7 +17,7 @@ public class PaintFrame extends Frame {
   private static final int DEFAULT_FRAME_HEIGHT = 600;
 
   private Graphics graphics;
-  private Point drawStart;
+  private Graphics2D graphics2D;
   private int startX;
   private int startY;
   private ToolBoxPanel toolBoxPanel;
@@ -27,10 +28,9 @@ public class PaintFrame extends Frame {
     this.startY = 0;
     this.toolBoxPanel = new ToolBoxPanel();
     this.paintPanel = new PaintPanel();
-    this.drawStart = new Point();
     initFrame();
-//    toolBoxPanel.addButtonPressEvent();
     this.graphics = getGraphics(); //Frame이 렌더링되기 전에 호출하면 null을 리턴함.
+    this.graphics2D = (Graphics2D) graphics;
 
   }
 
@@ -76,5 +76,9 @@ public class PaintFrame extends Frame {
 
   public int getY() {
     return startY;
+  }
+
+  public Graphics2D getPaintFrameGraphics2D() {
+    return graphics2D;
   }
 }
