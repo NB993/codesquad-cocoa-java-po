@@ -113,6 +113,7 @@ public class ToolBoxPanel extends Panel {
         paintFrame.addMouseListener(mouseListener);
         break;
       case "사각형":
+        mouseListener = new AdapterMouseListener() {};
         break;
       case "원":
         break;
