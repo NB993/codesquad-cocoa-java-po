@@ -12,23 +12,28 @@ import week4.day17.employee_search.AdapterWindowListener;
 
 public class PaintFrame extends Frame {
 
-  static final int DEFAULT_FRAME_WIDTH = 1024;
-  static final int DEFAULT_FRAME_HEIGHT = 600;
+  private static final int DEFAULT_FRAME_WIDTH = 1024;
+  private static final int DEFAULT_FRAME_HEIGHT = 600;
 
-  Graphics graphics;
-  Point drawStart;
-  Point drawEnd;
-  ToolBoxPanel toolBoxPanel;
-  PaintPanel paintPanel;
+  private Graphics graphics;
+  private Point drawStart;
+  private int startX;
+  private int startY;
+  private ToolBoxPanel toolBoxPanel;
+  private PaintPanel paintPanel;
 
   public PaintFrame() {
+    this.startX = 0;
+    this.startY = 0;
     this.toolBoxPanel = new ToolBoxPanel();
     this.paintPanel = new PaintPanel();
     this.drawStart = new Point();
-    this.drawEnd = new Point();
     initFrame();
+//    toolBoxPanel.addButtonPressEvent();
     this.graphics = getGraphics(); //Frame이 렌더링되기 전에 호출하면 null을 리턴함.
+
   }
+
 
   private void initFrame() {
     initFrame(DEFAULT_FRAME_WIDTH, DEFAULT_FRAME_HEIGHT);
@@ -42,70 +47,34 @@ public class PaintFrame extends Frame {
     Toolkit tk = Toolkit.getDefaultToolkit();
     Dimension screenSize = tk.getScreenSize();
     setLocation((screenSize.width / 2) - (width / 2), (screenSize.height / 2) - (height / 2));
-
-    addEventListeners();
-
-    this.add(toolBoxPanel);
-    this.add(paintPanel);
-    setVisible(true);
-  }
-
-  private void addEventListeners() {
-    windowClose();
-    mousePress();
-    mouseReleased();
-//    mouseMoving();
-//    mouseDragging();
-  }
-
-  private void mouseReleased() {
-    addMouseListener(new AdapterMouseListener() {
-      @Override
-      public void mouseReleased(MouseEvent e) {
-        graphics.drawLine(
-            (int)drawStart.getX(),
-            (int)drawStart.getY(),
-            (int)drawEnd.getX(),
-            (int)drawEnd.getY()
-        );
-      }
-    });
-  }
-
-  private void mouseMoving() {
-    addMouseMotionListener(new AdapterMouseListener() {
-      @Override
-      public void mouseMoved(MouseEvent e) {
-        drawStart.setLocation(e.getX(), e.getY());
-      }
-    });
-  }
-
-  private void mousePress() {
-    addMouseListener(new AdapterMouseListener() {
-      @Override
-      public void mousePressed(MouseEvent e) {
-        drawStart.setLocation(e.getX(), e.getY());
-      }
-    });
-  }
-
-  private void mouseDragging() {
-    addMouseMotionListener(new AdapterMouseListener() {
-      @Override
-      public void mouseDragged(MouseEvent e) {
-//        graphics.drawLine((int)drawStart.getX(), (int)drawStart.getY(), e.getX(), e.getY());
-        drawEnd.setLocation(e.getX(), e.getY());
-      }
-    });
-  }
-
-  private void windowClose() {
     addWindowListener(new AdapterWindowListener() {
       @Override
       public void windowClosing(WindowEvent e) {
         e.getWindow().dispose();
       }
     });
+
+    this.add(toolBoxPanel);
+    this.add(paintPanel);
+    setVisible(true);
+  }
+
+  public Graphics getPaintFrameGraphics() {
+    return graphics;
+  }
+
+  public void setX(int x) {
+    startX = x;
+  }
+  public void setY(int y) {
+    startY = y;
+  }
+
+  public int getX() {
+    return startX;
+  }
+
+  public int getY() {
+    return startY;
   }
 }
