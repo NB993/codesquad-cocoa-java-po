@@ -5,10 +5,7 @@ import java.awt.Panel;
 
 public class PaintPanel extends Panel {
 
-  Graphics graphics;
-
   public PaintPanel() {
-    this.graphics = getGraphics();
     setLayout(null);
   }
 
