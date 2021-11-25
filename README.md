@@ -28,6 +28,7 @@
 |미션|링크|
 |---|---|
 |AWT로 사원 검색 프로그램 만들어보기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week4/day17/employee_search">링크</a>|
+|AWT로 그림판 만들기|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week4/day18/paint">링크</a>|
 
 <br>
 <hr>
@@ -52,6 +53,9 @@
 * <a href="https://velog.io/@take/Day15">Day15</a>
 * <a href="https://velog.io/@take/3주차-주말">3주 차 주말</a>
 * <a href="https://velog.io/@take/Day16">Day16</a>
+* <a href="https://velog.io/@take/Day16-glmcoq7w">Day17</a>
+* <a href="https://velog.io/@take/Day18">Day18</a>
+* <a href="https://velog.io/@take/Day19">Day19</a>
 
 
 
