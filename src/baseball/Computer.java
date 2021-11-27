@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer {
-  private final List<String> answer;
+  private final String answer;
   private final List<String> numbers;
+  private int strike;
+  private int ball;
 
   public Computer() {
     this.numbers = addNumbers();
@@ -28,12 +30,30 @@ public class Computer {
     return numbers;
   }
 
-  private List<String> makeRandomAnswer() {
+  private String makeRandomAnswer() {
     Collections.shuffle(numbers);
-    return (List<String>) numbers.stream().limit(3);
+    return numbers.get(0) + numbers.get(1) + numbers.get(2);
   }
 
-  public List<String> getAnswer() {
-    return answer;
+  public void askQuestionOf(User user) {
+    compareAnswerWithUsers(user.submitAnswer());
+  }
+
+  private void compareAnswerWithUsers(String usersAnswer) {
+    String[] computersSplitAnswer = answer.split("");
+    String[] usersSplitAnswer = usersAnswer.split("");
+
+    for (int i = 0; i < 3; i++) {
+      writeDownCount(computersSplitAnswer[i], usersSplitAnswer[i]);
+    }
+  }
+
+  private void writeDownCount(String answerNumber, String usersNumber) {
+    if (answerNumber.equals(usersNumber)) {
+      strike++;
+    }
+    if (!answerNumber.equals(usersNumber) && answer.contains(usersNumber)) {
+      ball++;
+    }
   }
 }
