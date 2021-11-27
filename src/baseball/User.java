@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class User {
   private final Scanner sc = new Scanner(System.in);
 
-  private String getAnswer() {
+  private String submitAnswer() {
     String answer = "";
     try {
       answer = sc.nextLine();
