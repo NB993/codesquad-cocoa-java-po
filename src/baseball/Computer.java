@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer {
-  private final String answer;
   private final List<String> numbers;
+  private String answer;
   private int strike;
   private int ball;
 
   public Computer() {
     this.numbers = addNumbers();
-    this.answer = makeRandomAnswer();
   }
 
   private List<String> addNumbers() {
@@ -30,9 +29,9 @@ public class Computer {
     return numbers;
   }
 
-  private String makeRandomAnswer() {
+  public void makeRandomAnswer() {
     Collections.shuffle(numbers);
-    return numbers.get(0) + numbers.get(1) + numbers.get(2);
+    answer = numbers.get(0) + numbers.get(1) + numbers.get(2);
   }
 
   public void askQuestionOf(User user) {
@@ -55,5 +54,17 @@ public class Computer {
     if (!answerNumber.equals(usersNumber) && answer.contains(usersNumber)) {
       ball++;
     }
+  }
+
+  public int getStrike() {
+    return strike;
+  }
+
+  public int getBall() {
+    return ball;
+  }
+
+  public String getAnswer() {
+    return answer;
   }
 }

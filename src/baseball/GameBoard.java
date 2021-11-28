@@ -16,14 +16,33 @@ public class GameBoard {
   }
 
   public void start() {
+    computer.makeRandomAnswer();
     computer.askQuestionOf(user);
     printAnswerCount();
+    checkIsAnswerCorrect();
+  }
+
+  private void checkIsAnswerCorrect() {
+    if (computer.getStrike() == 3) {
+      askUserWantNextGame(user);
+    }
+  }
+
+  private void askUserWantNextGame(User user) {
+    System.out.print("다음 게임을 진행하시려면 아무 숫자나 눌러주세요.");
+    if (user.isReadyForNextGame()) {
+      return;
+    }
+    setIsGameGoingOn(false);
+  }
+
+  private void setIsGameGoingOn(boolean b) {
+    isGameGoingOn = b;
   }
 
   private void printAnswerCount() {
     if (computer.getStrike() == 3) {
       System.out.println(computer.getAnswer() + "... 정답입니다!");
-      isGameGoingOn = false;
       return;
     }
     if (computer.getStrike() == 0 && computer.getBall() == 0) {

@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class User {
   private final Scanner sc = new Scanner(System.in);
 
-  private String submitAnswer() {
+  public String submitAnswer() {
     String answer = "";
     try {
       answer = sc.nextLine();
@@ -16,4 +16,14 @@ public class User {
     return answer;
   }
 
+  public boolean isReadyForNextGame() {
+    String answer = "";
+    try {
+      answer = sc.nextLine();
+      Integer.parseInt(answer);
+    } catch (NumberFormatException e) {
+      return false;
+    }
+    return true;
+  }
 }
