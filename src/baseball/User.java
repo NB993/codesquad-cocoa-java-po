@@ -28,9 +28,9 @@ public class User {
     }
   }
 
-  private void checkIfInputLengthIsThree(String answer) throws UnderThreeInputString {
+  private void checkIfInputLengthIsThree(String answer) throws InputLengthUnderThreeException {
     if (!answer.equals("0") && answer.length() < 3) {
-      throw new UnderThreeInputString("세 자리 숫자를 입력해주세요.");
+      throw new InputLengthUnderThreeException("세 자리 숫자를 입력해주세요.");
     }
   }
 

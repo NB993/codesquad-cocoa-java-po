@@ -1,6 +1,7 @@
 package baseball;
 
 public class GameBoard {
+
   private boolean isGameGoingOn;
   private final User user;
   private final Computer computer;
@@ -16,12 +17,12 @@ public class GameBoard {
   }
 
   public void start() {
-    String answer = computer.askQuestionOf(user);
-    if (answer.equals("0")) {
+    String input = computer.askQuestionOf(user);
+    if (input.equals("0")) {
       setIsGameGoingOn(false);
       return;
     }
-    boolean isAnswerRight = computer.checkIsAnswerCorrect();
+    boolean isAnswerRight = computer.checkIsAnswerCorrect(input);
     if (isAnswerRight) {
       askIfUserWantNextGame(user);
     }
@@ -33,29 +34,12 @@ public class GameBoard {
       user.inputNumber();
       computer.reset();
     } catch (NumberFormatException e) {
-      System.out.println("게임종료");
       setIsGameGoingOn(false);
     }
   }
 
   private void setIsGameGoingOn(boolean b) {
     isGameGoingOn = b;
-  }
-
-  private void checkIsAnswerCorrect() {
-    if (computer.getStrike() == 3) {
-      System.out.println(computer.getAnswer() + "... 정답입니다!");
-      askIfUserWantNextGame(user);
-      computer.resetCount();
-      return;
-    }
-    if (computer.getStrike() == 0 && computer.getBall() == 0) {
-      System.out.println("낫싱!");
-      computer.resetCount();
-      return;
-    }
-    System.out.println(computer.getStrike() + "스트라이크 " + computer.getBall() + "볼");
-    computer.resetCount();
   }
 
 }

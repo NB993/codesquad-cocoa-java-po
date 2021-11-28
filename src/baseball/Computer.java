@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer {
+
   private String answer;
   private final List<String> numbers;
   private int strike;
@@ -40,10 +41,6 @@ public class Computer {
     String userInput = "";
     try {
       userInput = user.inputNumber();
-      if (userInput.toUpperCase() .equals("0")) {
-        return userInput;
-      }
-      compareAnswerWithUsers(userInput);
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       askQuestionOf(user);
@@ -51,9 +48,9 @@ public class Computer {
     return userInput;
   }
 
-  private void compareAnswerWithUsers(String usersAnswer) {
+  private void compareAnswerWithUserInput(String input) {
     String[] computersSplitAnswer = answer.split("");
-    String[] usersSplitAnswer = usersAnswer.split("");
+    String[] usersSplitAnswer = input.split("");
 
     for (int i = 0; i < 3; i++) {
       writeDownCount(computersSplitAnswer[i], usersSplitAnswer[i]);
@@ -74,7 +71,8 @@ public class Computer {
     }
   }
 
-  public boolean checkIsAnswerCorrect() {
+  public boolean checkIsAnswerCorrect(String input) {
+    compareAnswerWithUserInput(input);
     if (getStrike() == 3) {
       System.out.println(getAnswer() + "... 정답입니다!");
       resetCount();
