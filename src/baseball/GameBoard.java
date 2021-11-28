@@ -16,14 +16,20 @@ public class GameBoard {
   }
 
   public void start() {
-    computer.askQuestionOf(user);
-    checkIsAnswerCorrect();
+    String answer = computer.askQuestionOf(user);
+    if (answer.equals("0")) {
+      setIsGameGoingOn(false);
+      return;
+    }
+    boolean isAnswerRight = computer.checkIsAnswerCorrect();
+    if (isAnswerRight) {
+      askIfUserWantNextGame(user);
+    }
   }
 
   private void askIfUserWantNextGame(User user) {
-    System.out.print("다음 게임을 진행하시려면 아무 숫자나 눌러주세요.");
-
     try {
+      System.out.print("다음 게임을 진행하시려면 아무 숫자나 눌러주세요.");
       user.inputNumber();
       computer.reset();
     } catch (NumberFormatException e) {

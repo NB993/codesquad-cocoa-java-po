@@ -15,7 +15,7 @@ public class User {
       answer = sc.nextLine();
       Integer.parseInt(answer);
       Set<String> answerSet = new HashSet<>(List.of(answer.split("")));
-      if (answer.length() < 3) {
+      if (!answer.equals("0") && answer.length() < 3) {
         throw new UnderThreeInputString("세 자리 숫자를 입력해주세요.");
       }
       if (answer.length() == 3 && answerSet.size() < 3) {

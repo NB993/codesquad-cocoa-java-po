@@ -8,5 +8,6 @@ public class Main {
     while (gameBoard.isGoingOn()) {
       gameBoard.start();
     }
+    System.out.println("게임 종료");
   }
 }

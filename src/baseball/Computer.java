@@ -35,14 +35,20 @@ public class Computer {
     return numbers.get(0) + numbers.get(1) + numbers.get(2);
   }
 
-  public void askQuestionOf(User user) {
-    System.out.print("1~9 사이의 숫자로 조합된 3자리 숫자를 입력해주세요> ");
+  public String askQuestionOf(User user) {
+    System.out.print("1~9사이의 중복되지 않은 3자리 숫자를 입력해주세요(종료: 0)> ");
+    String userInput = "";
     try {
-      compareAnswerWithUsers(user.inputNumber());
-    } catch (NumberFormatException e) {
-      System.out.println("숫자만 입력해주세요.");
+      userInput = user.inputNumber();
+      if (userInput.toUpperCase() .equals("0")) {
+        return userInput;
+      }
+      compareAnswerWithUsers(userInput);
+    } catch (IllegalArgumentException e) {
+      System.out.println(e.getMessage());
       askQuestionOf(user);
     }
+    return userInput;
   }
 
   private void compareAnswerWithUsers(String usersAnswer) {
@@ -68,6 +74,22 @@ public class Computer {
     }
   }
 
+  public boolean checkIsAnswerCorrect() {
+    if (getStrike() == 3) {
+      System.out.println(getAnswer() + "... 정답입니다!");
+      resetCount();
+      return true;
+    }
+    if (getStrike() == 0 && getBall() == 0) {
+      System.out.println("낫싱!");
+      resetCount();
+      return false;
+    }
+    System.out.println(getStrike() + "스트라이크 " + getBall() + "볼");
+    resetCount();
+    return false;
+  }
+
   public int getStrike() {
     return strike;
   }
@@ -83,4 +105,5 @@ public class Computer {
   public void reset() {
     answer = makeRandomAnswer();
   }
+
 }
