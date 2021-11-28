@@ -5,13 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class Computer {
-  private final List<String> numbers;
   private String answer;
+  private final List<String> numbers;
   private int strike;
   private int ball;
 
   public Computer() {
     this.numbers = addNumbers();
+    this.answer = makeRandomAnswer();
   }
 
   private List<String> addNumbers() {
@@ -29,13 +30,19 @@ public class Computer {
     return numbers;
   }
 
-  public void makeRandomAnswer() {
+  private String makeRandomAnswer() {
     Collections.shuffle(numbers);
-    answer = numbers.get(0) + numbers.get(1) + numbers.get(2);
+    return numbers.get(0) + numbers.get(1) + numbers.get(2);
   }
 
   public void askQuestionOf(User user) {
-    compareAnswerWithUsers(user.submitAnswer());
+    System.out.print("1~9 사이의 숫자로 조합된 3자리 숫자를 입력해주세요> ");
+    try {
+      compareAnswerWithUsers(user.inputNumber());
+    } catch (NumberFormatException e) {
+      System.out.println("숫자만 입력해주세요.");
+      askQuestionOf(user);
+    }
   }
 
   private void compareAnswerWithUsers(String usersAnswer) {
@@ -45,6 +52,11 @@ public class Computer {
     for (int i = 0; i < 3; i++) {
       writeDownCount(computersSplitAnswer[i], usersSplitAnswer[i]);
     }
+  }
+
+  public void resetCount() {
+    strike = 0;
+    ball = 0;
   }
 
   private void writeDownCount(String answerNumber, String usersNumber) {
@@ -66,5 +78,9 @@ public class Computer {
 
   public String getAnswer() {
     return answer;
+  }
+
+  public void reset() {
+    answer = makeRandomAnswer();
   }
 }
