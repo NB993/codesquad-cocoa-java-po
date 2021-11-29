@@ -33,6 +33,14 @@
 <br>
 <hr>
 
+## 5주차
+* 5주차는 개인프로젝트 주간입니다.
+
+|미션|링크|
+|---|---|
+|숫자 야구|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/baseball">링크</a>|
+|GUI 가계부||
+
 ## 학습기록
 * <a href="https://velog.io/@take/Day1">Day1</a>
 * <a href="https://velog.io/@take/Day2">Day2</a>
@@ -56,6 +64,8 @@
 * <a href="https://velog.io/@take/Day16-glmcoq7w">Day17</a>
 * <a href="https://velog.io/@take/Day18">Day18</a>
 * <a href="https://velog.io/@take/Day19">Day19</a>
+* <a href="https://velog.io/@take/Day20">Day20</a>
+
 
 
 
