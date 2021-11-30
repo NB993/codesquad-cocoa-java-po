@@ -1,11 +1,8 @@
 package week5.household_ledger;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class SearchPanel extends JPanel {
