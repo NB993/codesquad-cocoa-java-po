@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,7 +28,8 @@ import javax.swing.table.TableModel;
 
 public class TablePanel extends JPanel {
 
-  JFrame addItemFrame;
+  JDialog addItemDialog;
+  DefaultTableModel ledgerModel;
   JTable table;
 
   public TablePanel() {
@@ -51,7 +53,7 @@ public class TablePanel extends JPanel {
     JButton addBtn = new JButton("추가");
     addBtn.setBounds((int) (getWidth() * 0.85), 3, 55, 35);
     addBtn.addActionListener((e) -> {
-      addItemFrame = new LedgerAddFrame();
+      addItemDialog = new LedgerAddDialog();
     });
     JButton editBtn = new JButton("수정");
     editBtn.setBounds((int) (getWidth() * 0.90), 3, 55, 35);
@@ -64,7 +66,7 @@ public class TablePanel extends JPanel {
   }
 
   private void addTable() {
-    DefaultTableModel ledgerModel = makeLedgerModel();
+    ledgerModel = makeLedgerModel();
     table = new JTable(ledgerModel);
     JScrollPane scrollPane = new JScrollPane(table);
     scrollPane.setLayout(new ScrollPaneLayout());
@@ -106,7 +108,7 @@ public class TablePanel extends JPanel {
     return txtData;
   }
 
-  private class LedgerAddFrame extends JFrame {
+  private class LedgerAddDialog extends JDialog {
 
     JPanel addPanel = new JPanel();
     JTextField date;
@@ -115,11 +117,11 @@ public class TablePanel extends JPanel {
     JTextField brief;
     JComboBox<String> type;
 
-    public LedgerAddFrame() {
-      initFrame();
+    public LedgerAddDialog() {
+      initDialog();
     }
 
-    private void initFrame() {
+    private void initDialog() {
       setTitle("추가");
       setLayout(null);
 
@@ -127,6 +129,7 @@ public class TablePanel extends JPanel {
       Dimension screenSize = tk.getScreenSize();
       setBounds((int) (screenSize.width * 0.4), (int) (screenSize.height * 0.3),
           (int) (screenSize.width * 0.2), (int) (screenSize.height * 0.4));
+      setModal(true);
 
       initPanels();
       setVisible(true);
@@ -159,9 +162,21 @@ public class TablePanel extends JPanel {
       addPanel.add(type);
       JButton okBtn = new JButton("확인");
       okBtn.addActionListener((e) -> {
+        addRowToModel();
         dispose();
       });
       addPanel.add(okBtn);
+    }
+
+    private void addRowToModel() {
+      ledgerModel.addRow(new String[]{
+          date.getText(),
+          income.getText(),
+          expenses.getText(),
+          brief.getText(),
+          (String)type.getSelectedItem()
+      });
+
     }
 
   }
