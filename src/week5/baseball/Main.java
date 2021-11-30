@@ -1,4 +1,4 @@
-package baseball;
+package week5.baseball;
 
 public class Main {
 
