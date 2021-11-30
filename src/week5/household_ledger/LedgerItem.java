@@ -3,6 +3,7 @@ package week5.household_ledger;
 import java.time.LocalDate;
 
 public class LedgerItem {
+
   private LocalDate date;
   private String brief;
   private int income;
@@ -28,4 +29,5 @@ public class LedgerItem {
   public String getType() {
     return type;
   }
+
 }
