@@ -1,22 +1,22 @@
 package week5.household_ledger;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,7 +24,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneLayout;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 public class TablePanel extends JPanel {
 
@@ -41,8 +40,8 @@ public class TablePanel extends JPanel {
     Dimension screenSize = tk.getScreenSize();
     setLayout(null);
     setBounds((int) (screenSize.getWidth() * 0.02), (int) (screenSize.getHeight() * 0.18),
-        (int) (screenSize.getWidth() * 0.76), (int) (screenSize.getHeight() * 0.55));
-    setBackground(Color.LIGHT_GRAY);
+        (int) (screenSize.getWidth() * 0.76), (int) (screenSize.getHeight() * 0.60));
+//    setBackground(Color.LIGHT_GRAY);
 
     addButtons();
     addTable();
@@ -59,10 +58,40 @@ public class TablePanel extends JPanel {
     editBtn.setBounds((int) (getWidth() * 0.90), 3, 55, 35);
     JButton removeBtn = new JButton("삭제");
     removeBtn.setBounds((int) (getWidth() * 0.95), 3, 55, 35);
-
+    JButton saveBtn = new JButton("저장");
+    saveBtn.setBounds((int) (getWidth() * 0.95), (int) (getHeight() * 0.90), 55, 35);
+    saveBtn.addActionListener((e) -> {
+      saveLedgerInTextFile();
+    });
     add(addBtn);
     add(editBtn);
     add(removeBtn);
+    add(saveBtn);
+  }
+
+  private void saveLedgerInTextFile() {
+    Vector<Vector> tableData = ledgerModel.getDataVector();
+
+    String path = LedgerModel.class.getResource("").getPath();
+    try (BufferedWriter bw = new BufferedWriter(
+        new FileWriter(path + "ledger.txt", StandardCharsets.UTF_8));){
+      Vector<String> row;
+      for (int i = 0; i < tableData.size(); i++) {
+        row = tableData.get(i);
+        bw.write(
+            row.get(0) + ";" +
+                row.get(1) + ";" +
+                row.get(2) + ";" +
+                row.get(3) + ";" +
+                row.get(4) + "\n"
+        );
+      }
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+      System.out.println("저장 실패");
+    }
+
+
   }
 
   private void addTable() {
@@ -71,7 +100,7 @@ public class TablePanel extends JPanel {
     JScrollPane scrollPane = new JScrollPane(table);
     scrollPane.setLayout(new ScrollPaneLayout());
     scrollPane.setBounds(0, (int) (getHeight() * 0.08),
-        getWidth(), (int) (getHeight() * 0.92));
+        getWidth(), (int) (getHeight() * 0.80));
 
     add(scrollPane);
   }
@@ -168,13 +197,14 @@ public class TablePanel extends JPanel {
       addPanel.add(okBtn);
     }
 
+    //TODO: 추가 전 데이터 유효성 체크로직 추가 필요
     private void addRowToModel() {
       ledgerModel.addRow(new String[]{
           date.getText(),
           income.getText(),
           expenses.getText(),
           brief.getText(),
-          (String)type.getSelectedItem()
+          (String) type.getSelectedItem()
       });
 
     }

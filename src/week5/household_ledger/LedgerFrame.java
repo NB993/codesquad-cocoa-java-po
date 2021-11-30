@@ -12,7 +12,6 @@ import javax.swing.ScrollPaneLayout;
 
 public class LedgerFrame extends JFrame {
 
-  JTable table;
   JPanel searchPanel;
   JPanel tablePanel;
 
