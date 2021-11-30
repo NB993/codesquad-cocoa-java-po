@@ -1,9 +1,8 @@
-package baseball;
+package week5.baseball;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.w3c.dom.ls.LSOutput;
 
 public class Computer {
 
@@ -37,7 +36,7 @@ public class Computer {
     return numbers.get(0) + numbers.get(1) + numbers.get(2);
   }
 
-    public String askQuestionOf(User user) {
+  public String askQuestionOf(User user) {
     System.out.print("1~9사이의 중복되지 않은 3자리 숫자를 입력해주세요(종료: 0)> ");
     String userInput = "";
     try {
@@ -50,23 +49,7 @@ public class Computer {
     }
     return userInput;
   }
-//  public String askQuestionOf(User user) {
-//    System.out.print("1~9사이의 중복되지 않은 3자리 숫자를 입력해주세요(종료: 0)> ");
-//    String userInput = "";
-//    try {
-//      userInput = user.inputNumber();
-//    } catch (NumberFormatException e) {
-//      System.out.println(e.getMessage());
-//      return askQuestionOf(user);
-//    } catch (InputLengthUnderThreeException e) {
-//      System.out.println(e.getMessage());
-//      return askQuestionOf(user);
-//    } catch (DuplicateNumberException e) {
-//      System.out.println(e.getMessage());
-//      return askQuestionOf(user);
-//    }
-//    return userInput;
-//  }
+
 
   private void compareAnswerWithUserInput(String input) {
     String[] computersSplitAnswer = answer.split("");

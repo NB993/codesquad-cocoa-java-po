@@ -1,4 +1,4 @@
-package baseball;
+package week5.baseball;
 
 import java.util.HashSet;
 import java.util.List;
@@ -34,11 +34,11 @@ public class User {
     }
   }
 
-  private void checkIfInputHasNumberOnly(String answer) throws NumberFormatException {
+  private void checkIfInputHasNumberOnly(String answer) throws IllegalArgumentException {
     try {
       Integer.parseInt(answer);
     } catch (NumberFormatException e) {
-      throw new NumberFormatException("숫자만 입력해주세요.");
+      throw new IllegalArgumentException("숫자만 입력해주세요.");
     }
   }
 
