@@ -1,6 +1,8 @@
 package week5.household_ledger;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,18 +18,20 @@ public class TablePanel extends JPanel {
   }
 
   private void initPanel() {
+    Toolkit tk = Toolkit.getDefaultToolkit();
+    Dimension screenSize = tk.getScreenSize();
 
     setLayout(null);
-    setBounds((int) (this.getWidth() * 0.05), (int) (this.getHeight() * 0.35),
-        (int) (this.getWidth() * 0.9), (int) (this.getHeight() * 0.55));
-    setBackground(Color.lightGray);
+    setBounds((int)(screenSize.getWidth() * 0.02), (int)(screenSize.getHeight() * 0.18),
+        (int) (screenSize.getWidth() * 0.76), (int) (screenSize.getHeight() * 0.55));
+    setBackground(Color.LIGHT_GRAY);
 
     JButton addBtn = new JButton("추가");
-    addBtn.setBounds((int) (getWidth() * 0.85), 0,70, 40);
+    addBtn.setBounds((int) (getWidth() * 0.85), 3,55, 35);
     JButton editBtn = new JButton("수정");
-    editBtn.setBounds((int) (getWidth() * 0.90), 0,70, 40);
+    editBtn.setBounds((int) (getWidth() * 0.90), 3,55, 35);
     JButton removeBtn = new JButton("삭제");
-    removeBtn.setBounds((int) (getWidth() * 0.95), 0,70, 40);
+    removeBtn.setBounds((int) (getWidth() * 0.95), 3,55, 35);
 
     add(addBtn);
     add(editBtn);
@@ -41,8 +45,8 @@ public class TablePanel extends JPanel {
     table = new JTable(data, columns);
     JScrollPane scrollPane = new JScrollPane(table);
     scrollPane.setLayout(new ScrollPaneLayout());
-    scrollPane.setBounds(0, (int) (getHeight() * 0.10),
-        this.getWidth(), (int) (getHeight() * 0.90));
+    scrollPane.setBounds(0, (int) (getHeight() * 0.08),
+        getWidth(), (int) (getHeight() * 0.92));
 
     add(scrollPane);
   }

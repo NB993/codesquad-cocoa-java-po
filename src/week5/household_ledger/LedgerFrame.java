@@ -13,13 +13,11 @@ import javax.swing.ScrollPaneLayout;
 public class LedgerFrame extends JFrame {
 
   JTable table;
-  JPanel inputPanel;
+  JPanel searchPanel;
   JPanel tablePanel;
 
   public LedgerFrame() {
     initFrame();
-    initPanels();
-    setVisible(true);
   }
 
   private void initFrame() {
@@ -30,19 +28,24 @@ public class LedgerFrame extends JFrame {
     Dimension screenSize = tk.getScreenSize();
     setBounds((int) (screenSize.width * 0.1), (int) (screenSize.height * 0.1),
         (int) (screenSize.width * 0.8), (int) (screenSize.height * 0.8));
+
+    initPanels();
+    setVisible(true);
   }
 
   private void initPanels() {
-    initInputPanel();
+    initSearchPanel();
     initTablePanel();
   }
 
   private void initTablePanel() {
-    add(new TablePanel());
+    tablePanel = new TablePanel();
+    add(tablePanel);
   }
 
-  private void initInputPanel() {
-    add(new SearchPanel());
+  private void initSearchPanel() {
+    searchPanel = new SearchPanel();
+    add(searchPanel);
   }
 
 
