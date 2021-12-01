@@ -19,6 +19,14 @@ import javax.swing.JTextField;
 
 public class SearchPanel extends JPanel {
 
+  JComboBox<String> monthComboBox;
+  JComboBox<String> typeComboBox;
+  JTextField briefTextFiled;
+  JTextField incomeFrom;
+  JTextField incomeTo;
+  JTextField expensesFrom;
+  JTextField expensesTo;
+
   public SearchPanel() {
     initPanel();
   }
@@ -38,18 +46,18 @@ public class SearchPanel extends JPanel {
 
   private void addComponents() {
     JLabel monthLabel = new JLabel("월");
-    JComboBox<String> monthPicker = new JComboBox<>(
+    monthComboBox = new JComboBox<>(
         new String[]{"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
     monthLabel.setBounds(50, 20, 20, 20);
-    monthPicker.setBounds(70, 22, 80, 20);
+    monthComboBox.setBounds(70, 22, 80, 20);
 
     JLabel typeLabel = new JLabel("소비유형");
-    JComboBox<String> typeComboBox = new JComboBox<>(new String[]{"", "현금", "카드"});
+    typeComboBox = new JComboBox<>(new String[]{"", "현금", "카드"});
     typeLabel.setBounds(200, 20, 50, 20);
     typeComboBox.setBounds(250, 22, 80, 20);
 
     JLabel briefLabel = new JLabel("적요");
-    JTextField briefTextFiled = new JTextField(20);
+    briefTextFiled = new JTextField(20);
     briefLabel.setBounds(360, 20, 60, 20);
     briefTextFiled.setBounds(400, 20, 200, 20);
 
@@ -57,27 +65,30 @@ public class SearchPanel extends JPanel {
     JButton resetBtn = new JButton("리셋");
     searchBtn.setBounds((int) (getWidth() * 0.85), 20, 55, 20);
     resetBtn.setBounds((int) (getWidth() * 0.9), 20, 55, 20);
+    resetBtn.addActionListener((e) -> {
+      resetSearchConditions();
+    });
 
     JLabel incomeLabel = new JLabel("수입");
-    JTextField incomeFrom = new JTextField(15);
+    incomeFrom = new JTextField(15);
     JLabel tilde = new JLabel("~");
-    JTextField incomeTo = new JTextField(15);
+    incomeTo = new JTextField(15);
     incomeLabel.setBounds(40, 50, 40, 20);
     incomeFrom.setBounds(80, 50, 100, 20);
     tilde.setBounds(180, 50, 20, 20);
     incomeTo.setBounds(200, 50, 100, 20);
 
     JLabel expensesLabel = new JLabel("지출");
-    JTextField expensesFrom = new JTextField(15);
+    expensesFrom = new JTextField(15);
     JLabel tilde2 = new JLabel("~");
-    JTextField expensesTo = new JTextField(15);
+    expensesTo = new JTextField(15);
     expensesLabel.setBounds(320, 50, 40, 20);
     expensesFrom.setBounds(360, 50, 100, 20);
     tilde2.setBounds(460, 50, 20, 20);
     expensesTo.setBounds(480, 50, 100, 20);
 
     add(monthLabel);
-    add(monthPicker);
+    add(monthComboBox);
 
     add(typeLabel);
     add(typeComboBox);
@@ -97,5 +108,15 @@ public class SearchPanel extends JPanel {
     add(expensesFrom);
     add(tilde2);
     add(expensesTo);
+  }
+
+  private void resetSearchConditions() {
+    monthComboBox.setSelectedIndex(0);
+    typeComboBox.setSelectedIndex(0);
+    briefTextFiled.setText("");
+    incomeFrom.setText("");
+    incomeTo.setText("");
+    expensesFrom.setText("");
+    expensesTo.setText("");
   }
 }
