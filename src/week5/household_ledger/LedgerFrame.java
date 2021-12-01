@@ -12,8 +12,8 @@ import javax.swing.ScrollPaneLayout;
 
 public class LedgerFrame extends JFrame {
 
-  JPanel searchPanel;
-  JPanel tablePanel;
+  private JPanel searchPanel;
+  private JPanel tablePanel;
 
   public LedgerFrame() {
     initFrame();
@@ -45,6 +45,14 @@ public class LedgerFrame extends JFrame {
   private void initSearchPanel() {
     searchPanel = new SearchPanel();
     add(searchPanel);
+  }
+
+  public JPanel getSearchPanel() {
+    return searchPanel;
+  }
+
+  public JPanel getTablePanel() {
+    return tablePanel;
   }
 
 

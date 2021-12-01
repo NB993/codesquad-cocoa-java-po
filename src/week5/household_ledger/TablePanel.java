@@ -27,9 +27,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class TablePanel extends JPanel {
 
-  JDialog addItemDialog;
-  DefaultTableModel ledgerModel;
-  JTable table;
+  private JDialog addItemDialog;
+  private DefaultTableModel ledgerModel;
+  private JTable table;
+
+  public DefaultTableModel getLedgerModel() {
+    return ledgerModel;
+  }
+
+  public JTable getTable() {
+    return table;
+  }
 
   public TablePanel() {
     initPanel();
