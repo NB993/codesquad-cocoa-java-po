@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JButton;
@@ -57,6 +58,9 @@ public class TablePanel extends JPanel {
     JButton editBtn = new JButton("수정");
     editBtn.setBounds((int) (getWidth() * 0.90), 3, 55, 35);
     JButton removeBtn = new JButton("삭제");
+    removeBtn.addActionListener((e) -> {
+      removeSelectedRows();
+    });
     removeBtn.setBounds((int) (getWidth() * 0.95), 3, 55, 35);
     JButton saveBtn = new JButton("저장");
     saveBtn.setBounds((int) (getWidth() * 0.95), (int) (getHeight() * 0.90), 55, 35);
@@ -67,6 +71,13 @@ public class TablePanel extends JPanel {
     add(editBtn);
     add(removeBtn);
     add(saveBtn);
+  }
+
+  private void removeSelectedRows() {
+    int[] selectedIndices = table.getSelectedRows();
+    for (int i = selectedIndices.length - 1; i >= 0; i--) {
+      ledgerModel.removeRow(selectedIndices[i]);
+    }
   }
 
   private void saveLedgerInTextFile() {
