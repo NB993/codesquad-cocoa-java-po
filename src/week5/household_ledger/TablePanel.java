@@ -12,7 +12,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JButton;
@@ -42,8 +41,6 @@ public class TablePanel extends JPanel {
     setLayout(null);
     setBounds((int) (screenSize.getWidth() * 0.02), (int) (screenSize.getHeight() * 0.18),
         (int) (screenSize.getWidth() * 0.76), (int) (screenSize.getHeight() * 0.60));
-//    setBackground(Color.LIGHT_GRAY);
-
     addButtons();
     addTable();
   }
