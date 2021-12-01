@@ -10,12 +10,17 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.JobAttributes;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.time.Month;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 
 public class SearchPanel extends JPanel {
 
@@ -62,6 +67,9 @@ public class SearchPanel extends JPanel {
     briefTextFiled.setBounds(400, 20, 200, 20);
 
     JButton searchBtn = new JButton("조회");
+    searchBtn.addActionListener((e) -> {
+      search(e);
+    });
     JButton resetBtn = new JButton("리셋");
     searchBtn.setBounds((int) (getWidth() * 0.85), 20, 55, 20);
     resetBtn.setBounds((int) (getWidth() * 0.9), 20, 55, 20);
@@ -108,6 +116,17 @@ public class SearchPanel extends JPanel {
     add(expensesFrom);
     add(tilde2);
     add(expensesTo);
+  }
+
+  private void search(ActionEvent e) {
+    DefaultTableModel tableModel = getTableModel();
+  }
+
+  private DefaultTableModel getTableModel() {
+    LedgerFrame ledgerFrame = (LedgerFrame) SwingUtilities.getWindowAncestor(this);
+    TablePanel tablePanel = (TablePanel) ledgerFrame.getTablePanel();
+    JTable table = tablePanel.getTable();
+    return tablePanel.getLedgerModel();
   }
 
   private void resetSearchConditions() {
