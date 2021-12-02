@@ -39,9 +39,9 @@
 |미션|링크|
 |---|---|
 |숫자 야구|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/baseball">링크</a>|
-|GUI 가계부||
+|GUI 가계부|<a href="https://github.com/NB993/codesquad-cocoa-java-po/tree/master/src/week5/household_ledger">링크</a>|
 
-## 학습기록
+## 학습기록 및 회고
 * <a href="https://velog.io/@take/Day1">Day1</a>
 * <a href="https://velog.io/@take/Day2">Day2</a>
 * <a href="https://velog.io/@take/Day3">Day3</a>
@@ -65,6 +65,11 @@
 * <a href="https://velog.io/@take/Day18">Day18</a>
 * <a href="https://velog.io/@take/Day19">Day19</a>
 * <a href="https://velog.io/@take/Day20">Day20</a>
+* <a href="https://velog.io/@take/5%EC%A3%BC%EC%B0%A8-%EA%B0%9C%EC%9D%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%B2%AB-%EC%A7%B8%EB%82%A0">5주차 - 개인프로젝트 첫 째날</a>
+* <a href="https://velog.io/@take/5%EC%A3%BC%EC%B0%A8-%EA%B0%9C%EC%9D%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%91%98-%EC%A7%B8%EB%82%A0">5주차 - 개인프로젝트 둘 째날</a>
+* <a href="https://velog.io/@take/5%EC%A3%BC%EC%B0%A8-%EA%B0%9C%EC%9D%B8%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%85%8B-%EC%A7%B8%EB%82%A0">5주차 - 개인프로젝트 셋 째날</a>
+* <a href="https://velog.io/@take/5%EC%A3%BC%EC%B0%A8-%EB%A7%88%EC%A7%80%EB%A7%89-%EB%82%A0">5주차 - 개인프로젝트 마지막 날</a>
+
 
 
 
