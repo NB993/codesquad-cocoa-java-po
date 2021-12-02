@@ -2,7 +2,7 @@ package week3.day12;
 
 import java.util.*;
 
-public class SynchronizedMap {
+public class SynchronizedMap_Ex {
 
   public static void main(String[] args) {
     Map<String, String> normalHashMap = new HashMap<>();

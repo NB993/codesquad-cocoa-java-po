@@ -1,5 +1,5 @@
 package week3.day12;
 
-public class HashTable {
+public class HashTable_Ex {
 
 }

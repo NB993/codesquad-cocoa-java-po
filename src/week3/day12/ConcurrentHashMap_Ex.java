@@ -4,7 +4,7 @@ import java.sql.SQLOutput;
 import java.util.*; //왜 아래 import가 필요한 거지?
 import java.util.concurrent.*;
 
-public class ConcurrentHashMap {
+public class ConcurrentHashMap_Ex {
 
   public static void main(String[] args) {
 
