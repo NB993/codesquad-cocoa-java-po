@@ -43,7 +43,7 @@ public class Computer {
       userInput = user.inputNumber();
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
-      askQuestionOf(user);
+      return askQuestionOf(user);
     }
     return userInput;
   }
